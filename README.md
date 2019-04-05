@@ -1,0 +1,2 @@
+# jikong
+weixin small code

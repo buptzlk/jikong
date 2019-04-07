@@ -1,0 +1,50 @@
+.container {
+  background: linear-gradient(to bottom, #5fddb1, #5ddbaf);
+  color: #fff;
+}
+.icon {
+  display: inline-block;
+}
+form{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 70rpx;
+  font-size: 28rpx;
+}
+.we-input-item {
+  border-bottom: 1px solid #fff;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.we-input-item input {
+  flex: 1;
+  color: #fff;
+}
+.we-input-item .phcolor {
+  color: #fff;
+}
+.we-input-item .icon {
+  width: 50rpx;
+  height: 50rpx;
+  font-size: 0;
+  margin-right: 34rpx;
+}
+.warn-btn[type=default] {
+  color: orange;
+  background: #dbf5ef;
+  border: none;
+  margin: 0;
+}
+.btn-area {
+  margin-top: 60rpx; 
+}
+.btn-area button {
+  margin-bottom: 40rpx;
+  background: #dbf5ef;
+  color: #5cd3b2;
+  border: none;
+  font-size: 28rpx;
+}

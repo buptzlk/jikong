@@ -1,0 +1,20 @@
+<view class="container login-form">
+  <form catchsubmit="formSubmit">
+    <view class="we-input-item">
+      <image class="icon" src="/image/user.png"></image>
+      <input class="weui-input" name="username" placeholder-class="phcolor" placeholder="请输入姓名" />
+    </view>
+    <view class="we-input-item">
+      <image class="icon" src="/image/tel.png"></image>
+      <input class="weui-input" type="number" name="tel" maxlength="11" placeholder-class="phcolor" placeholder="请输入手机号码" bindinput="setTel" />
+    </view>
+    <view class="we-input-item">
+      <image class="icon" src="/image/verify.png"></image>
+      <input class="weui-input" name="verify" placeholder-class="phcolor" placeholder="请输入验证码" />
+      <button class="weui-btn mini-btn warn-btn" type="default" size="mini" bindtap='sendVarifyCode'>{{canSendVerify? '发送验证码': timer + 's'}}</button>
+    </view>
+    <view class="btn-area">
+      <button type="primary" formType="submit">登录校验</button>
+    </view>
+  </form>
+</view>

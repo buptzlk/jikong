@@ -1,0 +1,18 @@
+.weui-search-bar {
+  width: 100%;
+}
+.weui-panel {
+  width: 100%;
+  margin-top: 0;
+}
+.btn-group {
+  align-self: flex-end;
+  position: fixed;
+  z-index: 100;
+  bottom: 20rpx;
+  right: 20rpx;
+}
+button[size=middle] {
+  font-size:16px;
+
+}

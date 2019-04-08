@@ -58,6 +58,11 @@ Page({
       url: '/pages/answer/answer?type=1',
     })
   },
+  naviMaterial: function () {
+    wx.navigateTo({
+      url: '/pages/material/material',
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

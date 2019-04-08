@@ -26,7 +26,7 @@
       <text>错题本</text>
     </view>
     <view class="flex-row-space"></view>
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap='naviMaterial'>
       <image src="/image/material.png"></image>
       <text>物资申请</text>
     </view>

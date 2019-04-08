@@ -4,7 +4,9 @@
     "pages/answer/answer",
     "pages/answer/result",
     "pages/login/login",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/material/material",
+    "pages/material/msg_success"
   ],
   "window": {
     "backgroundTextStyle": "light",

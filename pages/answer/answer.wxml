@@ -8,7 +8,7 @@
     <text>正确答案：{{question.answer}}</text>
   </view>
   <view class="btn-group">
-    <button size="mini">下一题</button>
+    <button size="mini" bindtap="next">下一题</button>
     <button size="mini" wx:if="{{answer_type == 1}}">学会了</button>
   </view>
 </view>

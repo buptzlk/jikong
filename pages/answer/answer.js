@@ -23,5 +23,10 @@ Page({
         title: '错题本'
       })
     }
+  },
+  next() {
+    wx.navigateTo({
+      url: 'result',
+    })
   }
 })

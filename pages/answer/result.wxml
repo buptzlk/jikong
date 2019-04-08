@@ -1,0 +1,4 @@
+<view class="container">
+  <text>恭喜您拿到{{score}}经验值</text>
+  <text>错题：{{list}}</text>
+</view>

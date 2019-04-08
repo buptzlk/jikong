@@ -6,7 +6,8 @@
     "pages/login/login",
     "pages/logs/logs",
     "pages/material/material",
-    "pages/material/msg_success"
+    "pages/material/msg_success",
+    "pages/task/task"
   ],
   "window": {
     "backgroundTextStyle": "light",

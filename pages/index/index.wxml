@@ -15,7 +15,7 @@
       <text>学习</text>
     </view>
     <view class="flex-row-space"></view>
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap='naviTask'>
       <image src="/image/task.png"></image>
       <text>任务卡</text>
     </view>

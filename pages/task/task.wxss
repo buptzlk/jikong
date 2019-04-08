@@ -1,0 +1,7 @@
+/* pages/task/task.wxss */
+.weui-cells {
+  width: 100%;
+}
+.weui-badge {
+  margin-top: -10rpx;
+}

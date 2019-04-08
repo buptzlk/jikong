@@ -63,6 +63,11 @@ Page({
       url: '/pages/material/material',
     })
   },
+  naviTask: function () {
+    wx.navigateTo({
+      url: '/pages/task/task',
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

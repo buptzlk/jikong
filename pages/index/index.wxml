@@ -5,7 +5,7 @@
     <text class="title">疾控中心小程序</text>
   </view>
   <view class="flex-row dashboard">
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap='naviAnswer'>
       <image src="/image/answer.png"></image>
       <text>答题</text>
     </view>
@@ -21,7 +21,7 @@
     </view>
   </view>
   <view class="flex-row dashboard">
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap='naviWrong'>
       <image src="/image/question.png"></image>
       <text>错题本</text>
     </view>

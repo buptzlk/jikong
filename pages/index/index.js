@@ -48,6 +48,16 @@ Page({
       })
     }
   },
+  naviAnswer: function() {
+    wx.navigateTo({
+      url: '/pages/answer/answer?type=0',
+    })
+  },
+  naviWrong: function() {
+    wx.navigateTo({
+      url: '/pages/answer/answer?type=1',
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

@@ -1,14 +1,49 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <button bindtap="bindLoginTap">登录</button>
-    </block>
+  <view class="header">
+    <image class="banner" src="/image/banner.png"></image>
+    <text class="title">疾控中心小程序</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="flex-row dashboard">
+    <view class="flex-row-item">
+      <image src="/image/answer.png"></image>
+      <text>答题</text>
+    </view>
+    <view class="flex-row-space"></view>
+    <view class="flex-row-item">
+      <image src="/image/study.png"></image>
+      <text>学习</text>
+    </view>
+    <view class="flex-row-space"></view>
+    <view class="flex-row-item">
+      <image src="/image/task.png"></image>
+      <text>任务卡</text>
+    </view>
+  </view>
+  <view class="flex-row dashboard">
+    <view class="flex-row-item">
+      <image src="/image/question.png"></image>
+      <text>错题本</text>
+    </view>
+    <view class="flex-row-space"></view>
+    <view class="flex-row-item">
+      <image src="/image/material.png"></image>
+      <text>物资申请</text>
+    </view>
+    <view class="flex-row-space"></view>
+    <view class="flex-row-item">
+      <image src="/image/message.png"></image>
+      <text>消息</text>
+    </view>
+  </view>
+  <view class="resource-list flex-row">
+    <view class="flex-row-item">
+      <image src="/image/banner.png"></image>
+      <text>先进事迹报道</text>
+    </view>
+    <view class="flex-row-item">
+        <image src="/image/banner.png"></image>
+        <text>疾控中心风云人物</text>
+    </view>
   </view>
 </view>

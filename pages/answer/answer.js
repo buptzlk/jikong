@@ -18,5 +18,10 @@ Page({
     this.setData({
       answer_type: +this.options.type
     })
+    if (this.options.type === '1') {
+      wx.setNavigationBarTitle({
+        title: '错题本'
+      })
+    }
   }
 })

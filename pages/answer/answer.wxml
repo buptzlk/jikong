@@ -1,7 +1,7 @@
 <view class="container">
   <text class="question-type">{{question.type}}</text>
   <text class="question-desc">{{question.desc}}</text>
-  <view wx:for="{{question.choices}}" class='choice'>
+  <view wx:for="{{question.choices}}" wx:key="{{index}}" class='choice'>
     <button>{{item.content}}</button>
   </view>
   <view class="question-answer" wx:if="{{answer_type == 1}}">

@@ -59,7 +59,7 @@ Page({
     })
   },
   naviMaterial: function () {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/material/material',
     })
   },

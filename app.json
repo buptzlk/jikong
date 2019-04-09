@@ -1,5 +1,5 @@
 {
-  "pages": [   
+  "pages": [
     "pages/index/index",
     "pages/answer/answer",
     "pages/answer/result",
@@ -7,9 +7,11 @@
     "pages/logs/logs",
     "pages/material/material",
     "pages/material/msg_success",
-    "pages/material/process",    
+    "pages/material/process",
     "pages/task/task",
     "pages/my/my",
+    "pages/my/set-pro",
+    "pages/my/info-edit",
     "pages/my/tel"
   ],
   "window": {

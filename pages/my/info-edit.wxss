@@ -1,0 +1,8 @@
+/* pages/my/info-edit.wxss */
+.container {
+  display: block;
+}
+.userinfo-avatar {
+  width: 85rpx;
+  height: 85rpx;
+}

@@ -1,0 +1,14 @@
+<!--pages/my/set-pro.wxml-->
+<view class='container'>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入科室" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+  <button class="weui-btn" bindtap="resetForm" size="mini">取消</button>
+    <button class="weui-btn" type="primary" bindtap="submitForm" size="mini">保存</button>
+  </view>
+</view>

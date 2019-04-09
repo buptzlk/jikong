@@ -7,6 +7,7 @@
     "pages/logs/logs",
     "pages/material/material",
     "pages/material/msg_success",
+    "pages/material/process",    
     "pages/task/task"
   ],
   "window": {

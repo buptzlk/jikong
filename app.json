@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": [   
     "pages/index/index",
     "pages/answer/answer",
     "pages/answer/result",
@@ -8,7 +8,9 @@
     "pages/material/material",
     "pages/material/msg_success",
     "pages/material/process",    
-    "pages/task/task"
+    "pages/task/task",
+    "pages/my/my",
+    "pages/my/tel"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,13 +39,13 @@
       {
         "selectedIconPath": "image/material.png",
         "iconPath": "image/bottom-icon/material.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/material/material",
         "text": "物资"
       },
       {
         "selectedIconPath": "image/bottom-icon/my-green.png",
         "iconPath": "image/bottom-icon/my.png",
-        "pagePath": "pages/login/login",
+        "pagePath": "pages/my/my",
         "text": "我的"
       }
     ]

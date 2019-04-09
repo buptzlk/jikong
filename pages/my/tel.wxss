@@ -1,0 +1,13 @@
+/* pages/my/tel.wxss */
+.weui-cell {
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.weui-btn-area {
+  width: 100%;
+  padding: 0 20rpx;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}

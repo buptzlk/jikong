@@ -1,0 +1,80 @@
+/* pages/my/my.wxss */
+
+.container {
+  display: block;
+  color: #6a6a6a;
+}
+.userinfo {
+  background: #57bead;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+.wave {
+  height:100rpx;
+  background:#57bead;
+  border-radius:100%;
+  margin-top:-50rpx;
+}
+.userinfo-avatar {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+.userinfo-company {
+  font-size: 13px;
+}
+.jk-box {
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 8rpx;
+  margin-top: -60rpx;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  padding: 0 50rpx;
+  justify-content: space-between;
+}
+
+.card-container {
+  height: 156rpx;
+}
+
+.card-container navigator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-container image {
+  width: 55rpx;
+  height: 55rpx;
+  margin-bottom: 10rpx;
+}
+
+.user-score-info {
+  padding: 1em;
+  margin: 0 1em;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+
+.weui-badge {
+  margin-top: -10rpx;
+}
+
+.weui-label {
+  background: #9cf;
+  font-size: 12px;
+  color: #fff;
+  padding: 0.2em 0.5em;
+  border-radius: 5px;
+  vertical-align: middle;
+}

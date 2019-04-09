@@ -1,6 +1,9 @@
 /* pages/material/process.wxss */
-.weui-panel {
-  width: 100%;
+.container {
+  display: block;
+}
+.weui-cell {
+  background: #fff;
 }
 .weui-media-box {
   display: flex;

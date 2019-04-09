@@ -19,10 +19,6 @@
       </navigator>
       <navigator url="/pages/material/process">
         <image src="/image/material.png"></image>
-        <text>已还物资</text>
-      </navigator>
-      <navigator url="/pages/material/process">
-        <image src="/image/material.png"></image>
         <text>借用物资</text>
       </navigator>
     </view>

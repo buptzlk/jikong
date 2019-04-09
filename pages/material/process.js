@@ -18,7 +18,15 @@ Page({
         time: '2019-04-01 12:12:12',
         statusText: '未审批'
       },
-    ]
+    ],
+    status: ['全部', '未审批', '审批通过', '已借用','拒绝'],
+    statusIndex: 0
+  },
+
+  bindStatusChange: function (e) {
+    this.setData({
+      statusIndex: e.detail.value
+    })
   },
 
   /**

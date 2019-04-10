@@ -13,8 +13,9 @@
     "pages/my/set-pro",
     "pages/my/info-edit",
     "pages/my/tel",
-    "pages/study/list",    
-    "pages/study/detail"
+    "pages/study/list",
+    "pages/study/detail",
+    "pages/message/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

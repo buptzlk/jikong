@@ -31,7 +31,7 @@
       <text>物资申请</text>
     </view>
     <view class="flex-row-space"></view>
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap='naviMessage'>
       <image src="/image/message.png"></image>
       <text>消息</text>
     </view>

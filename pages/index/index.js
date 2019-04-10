@@ -15,18 +15,18 @@ Page({
       url: '../logs/logs'
     })
   },
-  bindLoginTap: function () {
+  bindLoginTap: function() {
     wx.navigateTo({
       url: '../login/login'
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -58,19 +58,24 @@ Page({
       url: '/pages/answer/answer?type=1',
     })
   },
-  naviMaterial: function () {
+  naviMaterial: function() {
     wx.switchTab({
       url: '/pages/material/material',
     })
   },
-  naviTask: function () {
+  naviTask: function() {
     wx.navigateTo({
       url: '/pages/task/task',
     })
   },
-  naviStudy: function () {
+  naviStudy: function() {
     wx.switchTab({
       url: '/pages/study/list',
+    })
+  },
+  naviMessage: function() {
+    wx.navigateTo({
+      url: '/pages/message/list',
     })
   },
   getUserInfo: function(e) {

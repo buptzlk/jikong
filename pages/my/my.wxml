@@ -24,7 +24,7 @@
     </view>
   </view>
   <view class="weui-cells">
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="/pages/message/list" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__bd">
         我的消息
         <view class="weui-badge">1</view>

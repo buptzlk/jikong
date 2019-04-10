@@ -1,17 +1,16 @@
 <!--pages/study/list.wxml-->
 <view class='container'>
   <view class="weui-panel__bd">
-  <view wx:for="{{list}}" wx:key="{{id}}">
+    <view wx:for="{{list}}" wx:key="{{id}}">
       <navigator url="detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-        <image class="weui-media-box__thumb" src="{{item.imageUrl}}" />
-      </view>
-      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title">{{item.title}}</view>
-        <view class="weui-media-box__desc">{{item.desc}}</view>
-      </view>
-    </navigator>
-  </view>
-
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{item.imageUrl}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.title}}</view>
+          <view class="weui-media-box__desc">{{item.desc}}</view>
+        </view>
+      </navigator>
+    </view>
   </view>
 </view>

@@ -4,3 +4,15 @@
   margin: 0 auto;
   display: block;
 }
+.weui-article__h1 {
+  text-align: center;
+}
+.weui-article__time {
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 1em;
+}
+.weui-article__time text {
+  margin: 20rpx;
+}

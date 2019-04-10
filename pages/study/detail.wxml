@@ -2,6 +2,10 @@
 <view>
   <view class="weui-article">
     <view class="weui-article__h1">大标题</view>
+    <view class="weui-article__time">
+      <text>发布时间：2019-04-12 12:12:12</text>
+      <text>阅读次数：1</text>
+    </view>
     <view class="weui-article__section">
       <view class="weui-article__p">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

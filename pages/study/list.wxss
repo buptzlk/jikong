@@ -1,0 +1,5 @@
+/* pages/study/list.wxss */
+.weui-media-box {
+  background: #fff;
+  margin-bottom: 1rpx;
+}

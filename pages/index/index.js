@@ -68,6 +68,11 @@ Page({
       url: '/pages/task/task',
     })
   },
+  naviStudy: function () {
+    wx.switchTab({
+      url: '/pages/study/list',
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

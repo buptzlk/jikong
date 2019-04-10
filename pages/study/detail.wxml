@@ -1,0 +1,17 @@
+<!--pages/study/detail.wxml-->
+<view>
+  <view class="weui-article">
+    <view class="weui-article__h1">大标题</view>
+    <view class="weui-article__section">
+      <view class="weui-article__p">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </view>
+      <view class="weui-article__p">
+        <image class="weui-article__img" src="/image/banner.png" mode="aspectFit" />
+      </view>
+      <view class="weui-article__p">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </view>
+    </view>
+  </view>
+</view>

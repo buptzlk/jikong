@@ -1,0 +1,6 @@
+/* pages/study/detail.wxss */
+.weui-article__p .weui-article__img {
+  height: 180px;
+  margin: 0 auto;
+  display: block;
+}

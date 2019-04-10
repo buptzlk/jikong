@@ -10,7 +10,7 @@
       <text>答题</text>
     </view>
     <view class="flex-row-space"></view>
-    <view class="flex-row-item">
+    <view class="flex-row-item" bindtap="naviStudy">
       <image src="/image/study.png"></image>
       <text>学习</text>
     </view>

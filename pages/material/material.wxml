@@ -18,8 +18,16 @@
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text" wx:for="{{list}}" wx:key="{{index}}">
-        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
-        <view class="weui-media-box__desc">余量：{{item.remain}}</view>
+        <view class="weui-media-box__image">
+          <image src="{{item.imageUrl}}"></image>
+        </view>
+        <view class="weui-media-box__text-box">
+          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+          <view class="weui-media-box__desc">余量：{{item.remain}}</view>
+        </view>
+        <view class="weui-media-box-right">
+        <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
+        </view>
       </view>
     </view>
   </view>

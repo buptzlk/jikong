@@ -1,0 +1,6 @@
+<!--pages/common/inputNumber.wxml-->
+<view class="flex-row">
+  <image src="/image/minus.png" bindtap='changeNumber' wx-if="{{num != 0}}" data-type="0"></image>
+  <text class="input-number-text" wx-if="{{num != 0}}">{{num}}</text>
+  <image src="/image/add.png" bindtap='changeNumber' data-type="1"></image>
+</view>

@@ -16,3 +16,20 @@ button[size=middle] {
   font-size:16px;
 
 }
+.weui-media-box {
+  display: flex;
+}
+.weui-media-box__image {
+  margin-right: 20rpx;
+}
+.weui-media-box__image image {
+  width: 150rpx;
+  height: 150rpx;
+  display: block;
+}
+.weui-media-box-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}

@@ -1,0 +1,12 @@
+/* pages/common/inputNumber.wxss */
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+.flex-row image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.input-number-text {
+  margin: 0.5em;
+}

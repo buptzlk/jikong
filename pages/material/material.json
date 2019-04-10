@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "物资",
-  "usingComponents": {}
+  "usingComponents": {
+    "input-number": "/pages/common/inputNumber"
+  }
 }

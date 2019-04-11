@@ -22,9 +22,10 @@
 .header .banner {
   display: block;
   width: 100%;
+  height: 420rpx;
 }
 .dashboard {
-  margin-top: 20rpx;
+  margin-top: 2rpx;
   height: 180rpx;
 }
 .dashboard image {
@@ -49,6 +50,7 @@
   background: #fff;
 }
 .resource-list {
+  flex: 1;
   background: #fff;
   padding-top: 20rpx;
   justify-content: space-evenly; 

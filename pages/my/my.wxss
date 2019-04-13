@@ -78,3 +78,6 @@
   border-radius: 5px;
   vertical-align: middle;
 }
+.weui-cell {
+  padding: 20px;
+}

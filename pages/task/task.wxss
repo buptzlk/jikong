@@ -2,6 +2,9 @@
 .weui-cells {
   width: 100%;
 }
+.weui-cell {
+  padding: 20px;
+}
 .weui-badge {
   margin-top: -10rpx;
 }

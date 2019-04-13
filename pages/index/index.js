@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const User = require('../../service/user.js');
 
 Page({
   data: {
@@ -21,32 +22,73 @@ Page({
     })
   },
   onLoad: function() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+    console.log(wx.getStorageSync('openid'));
+    wx.login({
+      success(res) {
+        if (res.code) {
+          // User.login(res.code).then((data) => {
+          //   console.log(data);
+          // }).catch((e) => {
+          //   console.log(e)
+          // })
+          // 发起网络请求
+          console.log(res.code);
+          wx.getUserInfo({//getUserInfo流程
+            success: function (res2) {//获取userinfo成功
+              console.log(res2);
+              var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
+              var iv = res2.iv;
+              //请求自己的服务器
+              wx.request({
+                url: 'https://www.knowalker.com/api/login',
+                method: 'POST',
+                data: {
+                  code: res.code,
+                  encryptedData,
+                  iv
+                },
+                success(res) {
+                  console.log(res);
+                  wx.setStorage({
+                    key: 'openid',
+                    data: res.openid
+                  })
+                }
+              })              
+            }
           })
+
+        } else {
+          console.log('登录失败！' + res.errMsg)
         }
-      })
-    }
+      }
+    })
+    // if (app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse) {
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       app.globalData.userInfo = res.userInfo
+    //       this.setData({
+    //         userInfo: res.userInfo,
+    //         hasUserInfo: true
+    //       })
+    //     }
+    //   })
+    // }
   },
   naviAnswer: function() {
     wx.navigateTo({

@@ -9,20 +9,21 @@ const http = (method, url, data) => {
       url += '?' + stringfyParams(data);
       data = null;
     }
-    console.log(url);
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url,
-        method,
-        data,
-        success(res) {
-          resolve(res.data);
-        },
-        fail(err) {
-          reject(err);
+    wx.request({
+      url,
+      method,
+      data,
+      success(res) {
+        if (res.data.status_code == 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.message);
         }
-      })
-    });
+      },
+      fail(err) {
+        reject(err);
+      }
+    })
   })
 }
 const get = (url, params) => {

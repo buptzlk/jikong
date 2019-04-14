@@ -22,42 +22,27 @@ Page({
     })
   },
   onLoad: function() {
-    console.log(wx.getStorageSync('openid'));
+    let openid = wx.getStorageSync('openid');
+    console.log(openid);
+    if (openid) {
+      return;
+    }
     wx.login({
       success(res) {
         if (res.code) {
-          // User.login(res.code).then((data) => {
-          //   console.log(data);
-          // }).catch((e) => {
-          //   console.log(e)
-          // })
-          // 发起网络请求
-          console.log(res.code);
-          wx.getUserInfo({//getUserInfo流程
-            success: function (res2) {//获取userinfo成功
-              console.log(res2);
-              var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
-              var iv = res2.iv;
-              //请求自己的服务器
-              wx.request({
-                url: 'https://www.knowalker.com/api/login',
-                method: 'POST',
-                data: {
-                  code: res.code,
-                  encryptedData,
-                  iv
-                },
-                success(res) {
-                  console.log(res);
-                  wx.setStorage({
-                    key: 'openid',
-                    data: res.openid
-                  })
-                }
-              })              
-            }
+          User.login({
+            code: res.code,
+            iv: app.globalData.iv,
+            encryptedData: encodeURIComponent(app.globalData.encryptedData)
+          }).then((data) => {
+            console.log(data);
+            wx.setStorage({
+                key: 'openid',
+                data: data.openid
+              })
+          }).catch((e) => {
+            console.log(e)
           })
-
         } else {
           console.log('登录失败！' + res.errMsg)
         }

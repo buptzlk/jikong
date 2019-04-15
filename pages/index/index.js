@@ -5,10 +5,7 @@ const User = require('../../service/user.js');
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    userInfo: null,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,59 +18,20 @@ Page({
       url: '../login/login'
     })
   },
-  onLoad: function() {
-    let openid = wx.getStorageSync('openid');
-    console.log(openid);
-    if (openid) {
+  onLoad: function() {    
+    if (app.globalData.openid) {
+      console.log(openid);
       return;
     }
-    wx.login({
-      success(res) {
-        if (res.code) {
-          User.login({
-            code: res.code,
-            iv: app.globalData.iv,
-            encryptedData: encodeURIComponent(app.globalData.encryptedData)
-          }).then((data) => {
-            console.log(data);
-            wx.setStorage({
-                key: 'openid',
-                data: data.openid
-              })
-          }).catch((e) => {
-            console.log(e)
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
+    User.login({
+      code: app.globalData.code,
+      iv: encodeURIComponent(app.globalData.iv),
+      encryptedData: encodeURIComponent(app.globalData.encryptedData)
+    }).then((data) => {
+      app.globalData.openid = data.openid;
+    }).catch((e) => {
+      console.log('登录失败')
     })
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse) {
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
   },
   naviAnswer: function() {
     wx.navigateTo({

@@ -1,5 +1,5 @@
-// pages/my/info-edit.js
-const app = getApp();
+// pages/my/avater.js
+const app = getApp()
 
 Page({
 
@@ -7,33 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {
-      company: '单位1',
-      department: '科室一',
-      avatarUrl: 'https://avatars1.githubusercontent.com/u/15847491?s=460&v=4'
-    },
-    politicals: ["党员", "团员", "群众"],
-    politicalIndex: 0,
-    companys: ["单位1", "单位2"],
-    companyIndex: 0,
-  },
-  bindPoliticalChange: function (e) {
-    console.log('picker account 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      politicalIndex: e.detail.value
-    })
+    avaterUrl: ''
   },
 
-  bindCompanyChange: function (e) {
-    this.setData({
-      companyIndex: e.detail.value
-    })
-  },
+  upload() {
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success(res) {
+        const src = res.tempFilePaths[0]
 
-  naviAvatar() {
-    wx.navigateTo({
-      url: `avatar?avatarUrl=${app.globalData.userInfo.avatarUrl}`,
+        wx.redirectTo({
+          url: `./upload/upload?src=${src}`
+        })
+      }
     })
   },
   /**
@@ -41,7 +29,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      'userInfo': app.globalData.userInfo
+      'avatarUrl': this.options.avatarUrl
     })
   },
 

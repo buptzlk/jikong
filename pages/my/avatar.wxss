@@ -1,0 +1,9 @@
+/* pages/my/avatar.wxss */
+.avatar {
+  width: 100vw;
+  height: 100vw;
+  margin-bottom: 20rpx;
+}
+button {
+  margin: 20rpx;
+}

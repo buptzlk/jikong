@@ -1,0 +1,14 @@
+<!--pages/my/upload/upload.wxml-->
+<import src="/we-cropper/we-cropper.wxml" />
+
+<view class="cropper-wrapper">
+  <template is="we-cropper" data="{{...cropperOpt}}" />
+  <view class="cropper-buttons">
+    <button type="primary" class="btn" bindtap="uploadTap">
+      上传图片
+    </button>
+    <button type="primary" class="btn" bindtap="getCropperImage">
+      完成
+    </button>
+  </view>
+</view>

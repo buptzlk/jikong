@@ -14,9 +14,11 @@
     "pages/my/set-pro",
     "pages/my/info-edit",
     "pages/my/tel",
+    "pages/my/upload/upload",
     "pages/study/list",
     "pages/study/detail",
-    "pages/message/list"
+    "pages/message/list",
+    "pages/my/avatar"
   ],
   "window": {
     "backgroundTextStyle": "light",

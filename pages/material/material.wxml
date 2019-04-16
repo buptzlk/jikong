@@ -26,12 +26,29 @@
           <view class="weui-media-box__desc">余量：{{item.remain}}</view>
         </view>
         <view class="weui-media-box-right">
-        <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
+          <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
         </view>
       </view>
     </view>
   </view>
-  <view class="btn-group">
-    <button type="primary" size="middle" bindtap="borrowMaterial">借用</button>
+  <view class="fixed-bottom-bar" bindtap='toggleBorrowedList'>
+    <view class="{{selectedList.length ? 'img-box img-box-blue': 'img-box'}}">
+      <image src="{{selectedList.length ?'/image/icon/cart-white.png' : '/image/icon/cart.png' }}"></image>
+    </view>
+    <view class="fixed-bottom-bar__bd">借用{{selectedList.length}}种</view>
+    <view class="{{selectedList.length ? 'rt-btn' : 'rt-btn rt-btn-disable'}}" catchtap="borrowMaterial">{{selectedList.length ? '借用' : '1个起借'}}</view>
+  </view>
+  <view id="mask" class="{{isShowList? 'mask mask-open' : 'mask'}}" bindtap="hideMask"></view>
+  <view class="{{isShowList? 'cart-list cart-list-show': 'cart-list'}}" wx:if="{{selectedList.length}}">
+    <view class="weui-cells__title">已选物资</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{selectedList}}" wx:key="{{index}}">
+        <view class="selected-name">{{item.name}}</view>
+        <view class="selected-count">余量：{{item.remain}}</view>
+        <view class="weui-media-box-right">
+          <input-number num="{{item.borrow}}" index="{{item.index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

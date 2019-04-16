@@ -1,11 +1,11 @@
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     inputShowed: false,
     inputVal: "",
+    isShowList: false,
     list: [{
       name: '辐射服',
       remain: 5,
@@ -16,9 +16,9 @@ Page({
       remain: 0,
       borrow: 0,
       imageUrl: '/image/banner.png'
-    }]
+    }],
+    selectedList: []
   },
-
   showInput: function() {
     this.setData({
       inputShowed: true
@@ -40,12 +40,18 @@ Page({
       inputVal: e.detail.value
     });
   },
-
+  toggleBorrowedList: function() {
+    if (!this.data.selectedList.length) {
+      return;
+    }
+    this.setData({
+      isShowList: !this.data.isShowList
+    })
+  },
   borrowMaterial: function() {
     wx.navigateTo({
       url: 'msg_success'
     })
-
   },
   changeNumber: function(e) {
     let index = e.detail.index;
@@ -61,14 +67,24 @@ Page({
         [key]: val - 1
       });
     }
-
+    this.setData({
+      selectedList: this.data.list.map((item, index) => {
+        item.index = index
+        return item
+      }).filter((item) => {return item.borrow > 0;})
+    })
   },
-
+  hideMask: function(e) {
+    if (e.currentTarget.id === 'mask') {
+      this.setData({
+        isShowList: false
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
   },
 
   /**

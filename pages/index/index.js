@@ -30,7 +30,11 @@ Page({
       this.getHomeData();
       this.getUserData();
     }).catch((e) => {
-      console.log('登录失败')
+      console.log(e);
+      wx.showToast({
+        icon: 'none',
+        title: '登录失败',
+      })
     })
     
   },
@@ -42,6 +46,12 @@ Page({
         noticeCount: data.noticeCount
       })
       app.globalData.noticeCount = data.noticeCount
+    }).catch((e) => {
+      console.log(e);
+      wx.showToast({
+        icon: 'none',
+        title: '获取首页信息失败',
+      })
     })
   },
   getUserData: function() {
@@ -52,6 +62,12 @@ Page({
       app.globalData.userInfo = Object.assign(app.globalData.userInfo, data.userInfo);
       this.setData({
         userInfo: data.userInfo
+      })
+    }).catch((e) => {
+      console.log(e);
+      wx.showToast({
+        icon: 'none',
+        title: '获取用户信息失败',
       })
     })
   },

@@ -5,9 +5,12 @@
       <view class="weui-media-box__bd">
         <view class="weui-media-box__title">{{item.content}}</view>
         <view class="weui-media-box__tag">
-          <view class="weui-media-box__desc">{{item.typeText}}<view class="weui-badge weui-badge_dot" wx-if="{{item.flag == 0}}"></view></view>
+          <view class="weui-media-box__desc">
+          {{item.type}}<view class="weui-badge weui-badge_dot" wx-if="{{item.status == 0}}"></view></view>
+          {{item.created_at}}
         </view>
       </view>
     </view>
   </view>
+  <view class="well" wx:if="{{list.length == 0 && hasNextPage !== 1}}">暂无消息</view>
 </view>

@@ -1,40 +1,83 @@
 // pages/message/list.js
+const Notice = require('../../service/notice.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-      content: 'hahahahahahahahahahahahahahahaha',
-      type: 0,
-      typeText: '系统消息',
-      flag: 0
-    }, {
-      content: 'haha',
-      typeText: '后台消息',
-      type: 2,
-      flag: 1
-    }]
+    index: 1,
+    page_size: 20,
+    hasNextPage: 1,
+    list: []
   },
 
-  showModal: function() {
+  showModal: function(e) {
+    let index = e.currentTarget.dataset.index
+    let self = this;
     wx.showModal({
-      content: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
+      content: this.data.list[index].content,
       showCancel: false,
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          if (self.data.list[index].status == 1) {
+            return;
+          }
+          let key = `list[${index}].status`;
+          self.setData({
+            [key] : 1,
+          })
+          Notice.readNotice({
+            notice_id: self.data.list[index].id
+          }).catch((e) => {
+            console.log(e);
+            wx.showToast({
+              icon: 'none',
+              title: '标记消息已读失败',
+            })
+          })
         }
       }
     });
+  },
+
+  getList: function() {
+    if (this.data.hasNextPage !== 1 || this.loading) {
+      return;
+    }
+    this.loading = true;
+    Notice.getNoticeList({
+      index: this.data.index,
+      page_size: this.data.page_size
+    }).then((data) => {
+      this.setData({
+        list: this.data.list.concat(data.noticeInfo),
+        index: data.page.index,
+        hasNextPage: data.page.hasNextPage
+      })
+    }).catch((e) => {
+      console.log(e);
+      wx.showToast({
+        icon: 'none',
+        title: '获取消息失败'
+      })
+    }).then(() => {
+      this.loading = false;
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getList();
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    this.getList()
   },
 
   /**

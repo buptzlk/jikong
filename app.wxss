@@ -12,3 +12,7 @@ page {
   box-sizing: border-box;
   background: #f4f4f4;
 } 
+.well {
+  text-align: center;
+  padding-top: 10%;
+}

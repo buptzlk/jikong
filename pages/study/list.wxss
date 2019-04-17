@@ -3,3 +3,6 @@
   background: #fff;
   margin-bottom: 1rpx;
 }
+.weui-panel__bd {
+  width: 100%;
+}

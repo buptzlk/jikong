@@ -19,14 +19,14 @@
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text" wx:for="{{list}}" wx:key="{{index}}">
         <view class="weui-media-box__image">
-          <image src="{{item.imageUrl}}"></image>
+          <image src="{{item.cover_img_url}}"></image>
         </view>
         <view class="weui-media-box__text-box">
           <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
-          <view class="weui-media-box__desc">余量：{{item.remain}}</view>
+          <view class="weui-media-box__desc">余量：{{item.rest_num}}</view>
         </view>
         <view class="weui-media-box-right">
-          <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
+          <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.rest_num}}" bind:changeNumber="changeNumber"></input-number>
         </view>
       </view>
     </view>
@@ -44,11 +44,12 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell" wx:for="{{selectedList}}" wx:key="{{index}}">
         <view class="selected-name">{{item.name}}</view>
-        <view class="selected-count">余量：{{item.remain}}</view>
+        <view class="selected-count">余量：{{item.rest_num}}</view>
         <view class="weui-media-box-right">
           <input-number num="{{item.borrow}}" index="{{item.index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
         </view>
       </view>
     </view>
   </view>
+  <view class="well" wx:if="{{hasNextPage !== 1 &&list.length == 0}}">暂无物资～</view>
 </view>

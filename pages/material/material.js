@@ -1,3 +1,5 @@
+const Material = require('../../service/material.js')
+
 Page({
   /**
    * 页面的初始数据
@@ -6,17 +8,10 @@ Page({
     inputShowed: false,
     inputVal: "",
     isShowList: false,
-    list: [{
-      name: '辐射服',
-      remain: 5,
-      borrow: 0,
-      imageUrl: '/image/banner.png'
-    }, {
-      name: '辐射服',
-      remain: 0,
-      borrow: 0,
-      imageUrl: '/image/banner.png'
-    }],
+    index: 1,
+    page_size: 10,
+    hasNextPage: 1,
+    list: [],
     selectedList: []
   },
   showInput: function() {
@@ -57,7 +52,7 @@ Page({
     let index = e.detail.index;
     let type = e.detail.type;
     let key = `list[${index}].borrow`;
-    let val = this.data.list[index].borrow;
+    let val = this.data.list[index].borrow || 0;
     if (type == 1) {
       this.setData({
         [key]: val + 1
@@ -71,7 +66,9 @@ Page({
       selectedList: this.data.list.map((item, index) => {
         item.index = index
         return item
-      }).filter((item) => {return item.borrow > 0;})
+      }).filter((item) => {
+        return item.borrow > 0;
+      })
     })
   },
   hideMask: function(e) {
@@ -81,12 +78,42 @@ Page({
       })
     }
   },
+  getList: function() {
+    if (this.data.hasNextPage != 1 || this.loading) {
+      return;
+    }
+    this.loading = true;
+    Material.getMaterialList({
+      index: this.data.index,
+      page_size: this.data.page_size
+    }).then((data) => {
+      this.setData({
+        list: this.data.list.concat(data.goodsInfo),
+        index: data.page.index,
+        hasNextPage: data.page.hasNextPage
+      })
+    }).catch((e) => {
+      console.log(e);
+      wx.showToast({
+        icon: 'none',
+        title: '获取物资信息失败'
+      })
+    }).then(() => {
+      this.loading = false;
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function() {
+    this.getList();
   },
-
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    this.getList()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

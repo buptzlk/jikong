@@ -1,8 +1,12 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">
-    <image class="banner" src="/image/banner.png"></image>
-    <text class="title">疾控中心小程序</text>
+    <image class="banner" src="{{slideInfo.cover_img_url}}"></image>
+    <text class="title">{{slideInfo.title}}</text>
+  </view>
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.cover_img_url}}"></image>
+    <view class="userinfo-nickname">{{userInfo.name}}</view>
   </view>
   <view class="flex-row dashboard">
     <view class="flex-row-item" bindtap='naviAnswer'>
@@ -32,18 +36,18 @@
     </view>
     <view class="flex-row-space"></view>
     <view class="flex-row-item" bindtap='naviMessage'>
-      <image src="/image/message.png"></image>
+      <view style="position: relative;">
+        <image src="/image/message.png"></image>
+        <view wx:if="{{noticeCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{noticeCount}}</view>
+
+      </view>
       <text>消息</text>
     </view>
   </view>
   <view class="resource-list flex-row">
-    <view class="flex-row-item">
-      <image src="/image/banner.png"></image>
-      <text>先进事迹报道</text>
-    </view>
-    <view class="flex-row-item">
-        <image src="/image/banner.png"></image>
-        <text>疾控中心风云人物</text>
+    <view class="flex-row-item" wx:for="{{newsInfo}}" wx:key="{{item.id}}">
+      <image src="{{item.cover_img_url}}"></image>
+      <view class="news-title">{{item.title}}</view>
     </view>
   </view>
 </view>

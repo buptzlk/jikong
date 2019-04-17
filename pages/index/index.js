@@ -2,26 +2,24 @@
 //获取应用实例
 const app = getApp()
 const User = require('../../service/user.js');
+const Home = require('../../service/index.js')
 
 Page({
   data: {
     userInfo: null,
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  bindLoginTap: function() {
-    wx.navigateTo({
-      url: '../login/login'
-    })
+    newsInfo: [],
+    slideInfo: null,
+    noticeCount: 0
   },
   onLoad: function() {    
     if (app.globalData.openid) {
       console.log(openid);
       return;
+    }
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
     }
     User.login({
       code: app.globalData.code,
@@ -29,8 +27,32 @@ Page({
       encryptedData: encodeURIComponent(app.globalData.encryptedData)
     }).then((data) => {
       app.globalData.openid = data.openid;
+      this.getHomeData();
+      this.getUserData();
     }).catch((e) => {
       console.log('登录失败')
+    })
+    
+  },
+  getHomeData: function() {
+    Home.getHomeInfo().then((data) => {
+      this.setData({
+        newsInfo: data.newsInfo,
+        slideInfo: data.slideInfo,
+        noticeCount: data.noticeCount
+      })
+      app.globalData.noticeCount = data.noticeCount
+    })
+  },
+  getUserData: function() {
+    if (app.globalData.userInfo.name) {
+      return;
+    }
+    User.getUserInfo().then((data) => {
+      app.globalData.userInfo = Object.assign(app.globalData.userInfo, data.userInfo);
+      this.setData({
+        userInfo: data.userInfo
+      })
     })
   },
   naviAnswer: function() {
@@ -61,14 +83,6 @@ Page({
   naviMessage: function() {
     wx.navigateTo({
       url: '/pages/message/list',
-    })
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
   }
 })

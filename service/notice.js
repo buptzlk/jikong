@@ -3,13 +3,13 @@ const domain = 'https://www.knowalker.com/api/'
 const app = getApp();
 
 const getNoticeList = function({
-  page,
+  index,
   page_size
 }) {
   return Http.post(domain + 'notice/get', {
     open_id: app.globalData.openid,
     page_size,
-    page
+    index
   })
 }
 const readNotice = function({

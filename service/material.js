@@ -3,13 +3,13 @@ const domain = 'https://www.knowalker.com/api/'
 const app = getApp();
 
 const getMaterialList = function({
-  page,
+  index,
   page_size
 }) {
   return Http.post(domain + 'page/goods', {
     open_id: app.globalData.openid,
     page_size,
-    page
+    index
   })
 }
 

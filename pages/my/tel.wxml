@@ -10,6 +10,17 @@
   </view>
   <view class="weui-cell weui-cell_input weui-cell_vcode">
     <view class="weui-cell__hd">
+      <view class="weui-label">验证码</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input"  bindinput='setImgCode' placeholder="请输入验证码" />
+    </view>
+    <view class="weui-cell__ft">
+      <image class="weui-vcode-img" src="{{codeImgUrl}}" style="width: 108px"></image>
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_input weui-cell_vcode">
+    <view class="weui-cell__hd">
       <view class="weui-label">新手机号</view>
     </view>
     <view class="weui-cell__bd">
@@ -24,7 +35,7 @@
       <view class="weui-label">验证码</view>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" placeholder="请输入验证码" bindinput='setVcode'/>
+      <input class="weui-input" type="number" placeholder="请输入验证码" bindinput='setVcode' />
     </view>
   </view>
   <view class="weui-btn-area">

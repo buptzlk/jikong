@@ -14,6 +14,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+function showErrMsg(msg) {
+  wx.showToast({
+    icon: 'none',
+    title: msg,
+  })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  showErrMsg
 }

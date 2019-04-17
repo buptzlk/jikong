@@ -12,15 +12,24 @@ const uploadFile = function({
 }
 
 const sendMsg = function({
-  captcha
+  captcha,
+  phone
 }) {
   return Http.post(domain + 'msg/send', {
     open_id: app.globalData.openid,
-    captcha
+    captcha,
+    phone
+  })
+}
+
+const getCaptcha = function() {
+  return Http.post(domain + 'captcha', {
+    open_id: app.globalData.openid
   })
 }
 
 module.exports = {
   uploadFile,
-  sendMsg
+  sendMsg,
+  getCaptcha
 }

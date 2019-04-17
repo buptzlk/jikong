@@ -31,7 +31,7 @@ module.exports = {
   register: function({
     name,
     phone,
-    code
+    code // 短信验证码
   }) {
     return Http.post(domain + 'register', {
       name,

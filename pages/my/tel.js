@@ -1,4 +1,9 @@
 // pages/my/tel.js
+const Tool = require('../../service/tools.js')
+const User = require('../../service/user.js')
+const {verifyTel} = require('../../utils/verify.js')
+const {showErrMsg} = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -7,90 +12,94 @@ Page({
   data: {
     oldTel: null,
     newTel: null,
-    vcode: null
+    vcode: null,
+    codeImgUrl: null,
+    imgCode: null
   },
 
-  setNewTel: function (e) {
-    console.log(e.detail.value);
+  setNewTel: function(e) {
     this.setData({
       newTel: e.detail.value
     });
   },
 
-  setOldTel: function (e) {
-    console.log(e.detail.value);
+  setOldTel: function(e) {
     this.setData({
       oldTel: e.detail.value
     });
   },
 
-  setVcode: function (e) {
-    console.log(e.detail.value);
+  setVcode: function(e) {
     this.setData({
       vcode: e.detail.value
     });
   },
 
+  setImgCode: function(e) {
+    this.setData({
+      imgCode: e.detail.value
+    });
+  },
+
   submitForm: function() {
-    console.log(this.data);
+    if (!this.data.newTel || !verifyTel(this.data.newTel)) {
+      showErrMsg('请输入新手机号')
+      return;
+    }
+    if (!this.data.oldTel || !verifyTel(this.data.oldTel)) {
+      showErrMsg('请输入原手机号')
+      return;
+    }
+    if (!this.data.vcode) {
+      showErrMsg('请输入验证码')
+      return;
+    }
+    User.changePhone({
+      old_phone: this.data.oldTel,
+      new_phone: this.data.newTel,
+      code: this.data.vcode
+    }).then(() => {
+      wx.navigateBack({
+        delta: 1
+      })
+    }).catch(e => {
+      showErrMsg(e || '修改手机号失败') 
+    })
   },
 
   sendVcode: function() {
+    if (!this.data.imgCode) {
+      showErrMsg('请输入图型验证码')
+      return;
+    }
+    if (!this.data.newTel || !verifyTel(this.data.newTel)) {
+      showErrMsg('请输入新手机号')
+      return;
+    }
+    if (!this.data.oldTel || !verifyTel(this.data.oldTel)) {
+      showErrMsg('请输入原手机号')
+      return;
+    }
+    Tool.sendMsg({
+      captcha: this.data.imgCode,
+      phone: this.data.newTel	
+    }).catch((e) => {
+      console.log(e)
+      showErrMsg(e || '发送短信验证码失败')
+    })
     console.log('send vcode');
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onLoad: function(options) {
+    Tool.getCaptcha().then((data) => {
+      this.setData({
+        codeImgUrl: data.url
+      })
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg('获取验证码失败')
+    })
   }
 })

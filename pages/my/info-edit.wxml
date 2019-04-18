@@ -4,7 +4,7 @@
     <view class="weui-cell">
       <view class="weui-cell__bd">头像</view>
       <view class="weui-cell__ft">
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" bindtap="naviAvatar"></image>
+        <image class="userinfo-avatar" src="{{userInfo.cover_img_url}}" mode="cover" bindtap="naviAvatar"></image>
       </view>
     </view>
     <view class="weui-cell">
@@ -13,15 +13,18 @@
     </view>
     <view class="weui-cell weui-cell_select">
       <view class="weui-cell__bd">
-        <picker bindchange="bindCompanyChange" value="{{companyIndex}}" range="{{companys}}">
-          <view class="weui-select">{{companys[companyIndex]}}</view>
+        <picker bindchange="bindCompanyChange" value="{{companyIndex}}" range="{{companys}}" range-key="name">
+          <view class="weui-select">{{companyIndex == -1 ? '未填写单位' : companys[companyIndex].name}}</view>
         </picker>
       </view>
     </view>
-    <navigator url="set-pro" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">科室</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.department}}</view>
-    </navigator>
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd">
+        <picker bindchange="bindDepartmentChange" value="{{departmentIndex}}" range="{{departments}}" range-key="name">
+          <view class="weui-select">{{departmentIndex == -1 ? '未填写科室' : departments[departmentIndex].name}}</view>
+        </picker>
+      </view>
+    </view>
     <view class="weui-cell weui-cell_select">
       <view class="weui-cell__bd">
         <picker bindchange="bindPoliticalChange" value="{{politicalIndex}}" range="{{politicals}}">

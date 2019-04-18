@@ -11,59 +11,84 @@ function filterUndifinedKey(obj) {
   })
   return newObj;
 }
-module.exports = {
-  login: function({
+
+const login = function({
+  code,
+  iv,
+  encryptedData
+}) {
+  return Http.post(domain + 'login', {
     code,
     iv,
     encryptedData
-  }) {
-    return Http.post(domain + 'login', {
-      code,
-      iv,
-      encryptedData
-    });
-  },
-  getUserInfo: function() {
-    return Http.post(domain + 'page/my', {
-      open_id: app.globalData.openid
-    });
-  },
-  register: function({
+  });
+}
+
+const register = function({
+  name,
+  phone,
+  code // 短信验证码
+}) {
+  return Http.post(domain + 'register', {
     name,
     phone,
-    code // 短信验证码
-  }) {
-    return Http.post(domain + 'register', {
-      name,
-      phone,
-      code
-    });
-  },
-  changePhone: function({
+    code
+  });
+}
+
+const getUserInfo = function() {
+  return Http.post(domain + 'page/my', {
+    open_id: app.globalData.openid
+  });
+}
+
+const changePhone = function({
+  new_phone,
+  old_phone,
+  code
+}) {
+  return Http.post(domain + 'user/changePhone', {
     new_phone,
     old_phone,
-    code
-  }) {
-    return Http.post(domain + 'user/changePhone', {
-      new_phone,
-      old_phone,
-      code,
-      open_id: app.globalData.openid
-    });
-  },
-  updateUser: function({
+    code,
+    open_id: app.globalData.openid
+  });
+}
+
+const updateUser = function({
+  cover_img_url,
+  group_id,
+  department_id,
+  political
+}) {
+  let data = filterUndifinedKey({
     cover_img_url,
     group_id,
-    department,
+    department_id,
     political
-  }) {
-    let data = filterUndifinedKey({
-      cover_img_url,
-      group_id,
-      department,
-      political
-    });
-    data.open_id = app.globalData.openid
-    return Http.post(domain + 'user/update', data);
-  }
+  });
+  data.open_id = app.globalData.openid
+  return Http.post(domain + 'user/update', data);
+}
+
+const getCompanys = function() {
+  return Http.post(domain + 'group/lists', {
+    open_id: app.globalData.openid
+  });
+}
+
+const getDepartments = function() {
+  return Http.post(domain + 'department/lists', {
+    open_id: app.globalData.openid
+  });
+}
+
+module.exports = {
+  login,
+  register,
+  getUserInfo,
+  changePhone,
+  updateUser,
+  getCompanys,
+  getDepartments
 }

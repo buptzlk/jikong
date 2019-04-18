@@ -36,11 +36,15 @@ Page({
           url: 'index',
         })
       }).catch((e) => {
+        if (e && e.status_code == 4003) {
+          app.globalData.openid = e.openid;
+          wx.redirectTo({
+            url: '../login/login',
+          })
+          return;
+        }
         console.log(e);
         showErrMsg('登录失败');
-        wx.redirectTo({
-          url: '../login/login',
-        })
       })
     }
   }

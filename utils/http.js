@@ -19,6 +19,11 @@ const http = (method, url, data) => {
       success(res) {
         if (res.data.status_code == 0) {
           resolve(res.data.data);
+        } else if (res.data.status_code == 4003){
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+          reject(res.data);
         } else {
           reject(res.data.message);
         }

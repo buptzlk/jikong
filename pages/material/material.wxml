@@ -46,7 +46,7 @@
         <view class="selected-name">{{item.name}}</view>
         <view class="selected-count">余量：{{item.rest_num}}</view>
         <view class="weui-media-box-right">
-          <input-number num="{{item.borrow}}" index="{{item.index}}" min="0" max="{{item.remain}}" bind:changeNumber="changeNumber"></input-number>
+          <input-number num="{{item.borrow}}" index="{{item.index}}" min="0" max="{{item.rest_num}}" bind:changeNumber="changeNumber"></input-number>
         </view>
       </view>
     </view>

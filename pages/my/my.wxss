@@ -65,11 +65,13 @@
   margin: 0 1em;
   border-bottom: 1rpx solid #f4f4f4;
 }
-
-.weui-badge {
-  margin-top: -10rpx;
+.weui-cell__hd {
+  display: flex;
 }
-
+.weui-badge-box {
+  position: relative;
+  display: inline-block;
+}
 .weui-label {
   background: #9cf;
   font-size: 12px;

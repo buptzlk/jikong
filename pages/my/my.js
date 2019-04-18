@@ -1,4 +1,7 @@
 const app = getApp();
+const User = require('../../service/user.js')
+const {showErrMsg}  = require('../../utils/util.js')
+
 // pages/my/my.js
 Page({
 
@@ -6,27 +9,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {
-      name: '李一',
-      avatarUrl: null,
-      company: '疾控中心',
-      score: 110,
-      level: 1,
-      rank: 200
-    }
+    userInfo: null,
+    noticeCount: 0,
+    complete: ''
   },
   naviAvatar: function() {
     wx.navigateTo({
       url: `./avatar?avatarUrl=${app.globalData.userInfo.avatarUrl}`,
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      'userInfo.avatarUrl': app.globalData.userInfo.avatarUrl
+  },
+
+  getUserInfo: function() {
+    User.getUserInfo().then(data => {
+      this.setData({
+        userInfo: data.userInfo,
+        noticeCount: data.noticeCount,
+        complete: data.complete
+      })
+      app.globalData.userInfo = data.userInfo
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg(e || '获取用户信息失败')
     })
   },
 
@@ -41,7 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserInfo();
   },
 
   /**

@@ -17,8 +17,9 @@
   width: 260rpx;
   position: relative;
   color: #999;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
+  white-space: nowrap;
 }
 .weui-label {
   background: #9cf;

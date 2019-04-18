@@ -9,13 +9,6 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad() {
-    let self = this;
-    if (app.globalData.openid) {
-      wx.switchTab({
-        url: 'index',
-      })
-      return;
-    }
   },
   bindGetUserInfo(e) {
     if (e.detail.userInfo) {
@@ -37,7 +30,7 @@ Page({
         })
       }).catch((e) => {
         if (e && e.status_code == 4003) {
-          app.globalData.openid = e.openid;
+          app.globalData.openid = e.data.openid;
           wx.redirectTo({
             url: '../login/login',
           })

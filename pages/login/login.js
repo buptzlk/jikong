@@ -5,7 +5,6 @@ const User =  require('../../service/user.js')
 
 Page({
   data: {
-    canSendVerify: true,
     tel: null,
     captchaUrl: '',
     captcha: '',
@@ -54,18 +53,14 @@ Page({
       phone: e.detail.value.tel
     }).then(() => {
       wx.switchTab({
-        url: 'index',
+        url: '../index/index',
       })
     }).catch((e) => {
       console.log(e);
       showErrMsg(e || '登录校验失败')
     })
-    console.log('登录校验'); 
   },
   sendVerifyCode: function() {
-    if (!this.data.canSendVerify) {
-      return;
-    }
     if (!verifyTel(this.data.tel)) {
       showErrMsg('请输入正确的手机号码')
       return;
@@ -74,10 +69,12 @@ Page({
       showErrMsg('请输入图形验证码')
       return;
     }
-    this.setData({
-      canSendVerify: false
+    Tool.sendMsg({
+      captcha: this.data.captcha,
+      phone: this.data.tel
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg('发送验证码失败')
     })
-    this.countDown();
-    console.log('发送验证码');
   }
 })

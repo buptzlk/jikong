@@ -2,6 +2,7 @@
   padding-top: 200rpx; 
   background: linear-gradient(to bottom, #5fddb1, #5ddbaf);
   color: #fff;
+  height: 100%;
 }
 .icon {
   display: inline-block;

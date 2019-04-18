@@ -32,7 +32,8 @@ const register = function({
   return Http.post(domain + 'register', {
     name,
     phone,
-    code
+    code,
+    open_id: app.globalData.openid
   });
 }
 

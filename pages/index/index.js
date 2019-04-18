@@ -11,32 +11,9 @@ Page({
     slideInfo: null,
     noticeCount: 0
   },
-  onLoad: function() {    
-    if (app.globalData.openid) {
-      console.log(openid);
-      return;
-    }
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    User.login({
-      code: app.globalData.code,
-      iv: encodeURIComponent(app.globalData.iv),
-      encryptedData: encodeURIComponent(app.globalData.encryptedData)
-    }).then((data) => {
-      app.globalData.openid = data.openid;
-      this.getHomeData();
-      this.getUserData();
-    }).catch((e) => {
-      console.log(e);
-      wx.showToast({
-        icon: 'none',
-        title: '登录失败',
-      })
-    })
-    
+  onLoad: function() { 
+    this.getHomeData();  
+    this.getUserData(); 
   },
   getHomeData: function() {
     Home.getHomeInfo().then((data) => {

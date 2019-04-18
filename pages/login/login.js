@@ -1,68 +1,77 @@
 const { verifyTel } = require('../../utils/verify.js')
-
-const delayTime = 60;
+const { showErrMsg } = require('../../utils/util.js')
+const Tool = require('../../service/tools.js')
+const User =  require('../../service/user.js')
 
 Page({
   data: {
-    timer: delayTime,
     canSendVerify: true,
     tel: null,
-    varifyCode: null,
+    captchaUrl: '',
+    captcha: '',
+    verifyCode: null,
   },
   onLoad: function () {
+    Tool.getCaptcha().then((data) => {
+      this.setData({
+        captchaUrl: data.url
+      })
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg('获取验证码失败')
+    })
   },
   setTel: function(e) {
     this.setData({
       tel: e.detail.value
     });
   },
+  setCaptcha: function (e) {
+    this.setData({
+      captcha: e.detail.value
+    });
+  },
   formSubmit: function (e) {
-    console.log(e);
     if (!e.detail.value.username) {
-      wx.showToast({
-        title: '请输入姓名',
-        icon: 'none',
-        duration: 3000
-      });
+      showErrMsg('请输入姓名');
       return;
     }
     if (!e.detail.value.tel) {
-      wx.showToast({
-        title: '请输入手机号码',
-        icon: 'none',
-        duration: 3000
-      });
+      showErrMsg('请输入手机号码')
       return;
     } 
-    if (!verifyTel(this.data.tel)) {
-      wx.showToast({
-        title: '请输入正确的手机号码',
-        icon: 'none',
-        duration: 3000
-      });
+    if (!verifyTel(e.detail.value.tel)) {
+      showErrMsg('请输入正确的手机号码')
       return;
     } 
-    if (!e.detail.value.verify) {
-      wx.showToast({
-        title: '请输入验证码',
-        icon: 'none',
-        duration: 3000
-      });
+    if (!e.detail.value.verifyCode) {
+      showErrMsg('请输入验证码')
       return;
     }
+    User.register({
+      code: e.detail.value.verifyCode,
+      name: e.detail.value.username,
+      phone: e.detail.value.tel
+    }).then(() => {
+      wx.switchTab({
+        url: 'index',
+      })
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg(e || '登录校验失败')
+    })
     console.log('登录校验'); 
   },
-  sendVarifyCode: function() {
-    // check tel 
-    if (!verifyTel(this.data.tel)) {
-      wx.showToast({
-        title: '请输入正确的手机号码',
-        icon: 'none',
-        duration: 3000
-      });
+  sendVerifyCode: function() {
+    if (!this.data.canSendVerify) {
       return;
     }
-    if (!this.data.canSendVerify) {
+    if (!verifyTel(this.data.tel)) {
+      showErrMsg('请输入正确的手机号码')
+      return;
+    }
+    if (!this.data.captcha) {
+      showErrMsg('请输入图形验证码')
       return;
     }
     this.setData({
@@ -70,21 +79,5 @@ Page({
     })
     this.countDown();
     console.log('发送验证码');
-  },
-  countDown: function() {
-    let self = this;
-    if (this.data.timer > 0) {
-      setTimeout(function() {
-        self.setData({
-          timer: self.data.timer - 1
-        });
-        self.countDown();
-      }, 1000);
-    } else if(!this.data.canSendVerify){
-      this.setData({
-        timer: delayTime,
-        canSendVerify: true
-      })
-    }
   }
 })

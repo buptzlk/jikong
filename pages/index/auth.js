@@ -1,4 +1,6 @@
 const app = getApp();
+const User = require('../../service/user.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
   data: {
@@ -8,7 +10,7 @@ Page({
   },
   onLoad() {
     let self = this;
-    if (app.globalData.iv) {
+    if (app.globalData.openid) {
       wx.switchTab({
         url: 'index',
       })
@@ -24,9 +26,22 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
-      wx.switchTab({
-        url: 'index',
-      }) 
-    }          
+      User.login({
+        code: app.globalData.code,
+        iv: encodeURIComponent(app.globalData.iv),
+        encryptedData: encodeURIComponent(app.globalData.encryptedData)
+      }).then((data) => {
+        app.globalData.openid = data.openid;
+        wx.switchTab({
+          url: 'index',
+        })
+      }).catch((e) => {
+        console.log(e);
+        showErrMsg('登录失败');
+        wx.redirectTo({
+          url: '../login/login',
+        })
+      })
+    }
   }
 })

@@ -5,7 +5,7 @@
     <text class="title">{{slideInfo.title}}</text>
   </view>
   <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.cover_img_url}}"></image>
+    <image class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl}}"></image>
     <view class="userinfo-nickname">{{userInfo.name}}</view>
   </view>
   <view class="flex-row dashboard">

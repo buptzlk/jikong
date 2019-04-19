@@ -36,9 +36,8 @@ Page({
       return;
     }
     User.getUserInfo().then((data) => {
-      app.globalData.userInfo = Object.assign(app.globalData.userInfo, data.userInfo);
       this.setData({
-        userInfo: data.userInfo
+        userInfo: app.globalData.userInfo
       })
     }).catch((e) => {
       console.log(e);

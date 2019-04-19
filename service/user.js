@@ -40,6 +40,9 @@ const register = function({
 const getUserInfo = function() {
   return Http.post(domain + 'page/my', {
     open_id: app.globalData.openid
+  }).then((data) => {
+    app.globalData.userInfo = Object.assign(app.globalData.userInfo, data.userInfo)
+    return data;
   });
 }
 

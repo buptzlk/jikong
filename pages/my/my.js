@@ -27,11 +27,10 @@ Page({
   getUserInfo: function() {
     User.getUserInfo().then(data => {
       this.setData({
-        userInfo: data.userInfo,
+        userInfo: app.globalData.userInfo,
         noticeCount: data.noticeCount,
         complete: data.complete
       })
-      app.globalData.userInfo = data.userInfo
     }).catch((e) => {
       console.log(e);
       showErrMsg(e || '获取用户信息失败')

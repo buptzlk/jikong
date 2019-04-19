@@ -4,7 +4,9 @@ const {showErrMsg} = require('../../utils/util.js')
 
 Page({
   data: {
-    userInfo: null,
+    userInfo: {
+      avatarUrl: '/image/avatar.png'
+    },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },

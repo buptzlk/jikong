@@ -42,9 +42,18 @@ const getAdminList = function() {
   })
 }
 
+const remind = function({borrow_id, admin_id}) {
+  return Http.post(domain + 'borrow/reminder', {
+    open_id: app.globalData.openid,
+    borrow_id,
+    admin_id
+  })
+}
+
 module.exports = {
   getMaterialList,
   borrow,
   getBorrowList,
-  getAdminList
+  getAdminList,
+  remind
 }

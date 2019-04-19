@@ -1,6 +1,9 @@
 // pages/material/process.js
 const Material = require('../../service/material.js')
-const { showErrMsg, formatTime } = require('../../utils/util.js')
+const {
+  showErrMsg,
+  formatTime
+} = require('../../utils/util.js')
 
 Page({
 
@@ -21,7 +24,7 @@ Page({
     hasNextPage: 1,
   },
 
-  bindStatusChange: function (e) {
+  bindStatusChange: function(e) {
     if (this.data.statusIndex == e.detail.value) {
       return;
     }
@@ -35,11 +38,21 @@ Page({
     this.getList()
   },
   bindPickerChange: function(e) {
-    let goods_id = e.target.dataset.id
+    let borrow_id = e.target.dataset.id
     let admin_id = this.data.adminList[e.detail.value].id
-    console.log(goods_id, admin_id);
+    Material.remind({
+      borrow_id,
+      admin_id
+    }).then((data) => {
+      wx.showToast({
+        title: '已提醒',
+      })
+    }).catch((e) => {
+      console.log(e)
+      showErrMsg(e || '催办失败')
+    })
   },
-  getList: function () {
+  getList: function() {
     if (this.data.hasNextPage != 1 || this.loading) {
       return;
     }
@@ -69,7 +82,7 @@ Page({
       this.loading = false;
     })
   },
-  getAdminList: function(){
+  getAdminList: function() {
     Material.getAdminList().then((data) => {
       this.setData({
         adminList: data
@@ -82,7 +95,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getList()
     this.getAdminList();
   },
@@ -90,49 +103,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.getList();
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

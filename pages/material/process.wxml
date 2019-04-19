@@ -2,8 +2,8 @@
 <view class='container'>
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__bd">
-      <picker bindchange="bindStatusChange" value="{{statusIndex}}" range="{{status}}">
-        <view class="weui-select">状态：{{status[statusIndex]}}</view>
+      <picker bindchange="bindStatusChange" value="{{statusIndex}}" range="{{status}}" range-key='val'>
+        <view class="weui-select">状态：{{status[statusIndex].val}}</view>
       </picker>
     </view>
   </view>
@@ -16,7 +16,7 @@
           <view class="weui-media-box__desc__time">申请时间：{{item.created_at}}</view>
         </view>
         <view class="weui-media-box-rt">
-          <text>状态：{{item.statusText}}</text>
+          <text>状态：{{item.status}}</text>
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{adminList}}" range-key='name' data-id="{{item.id}}">
             <view class="picker">
               <button type="primary" size="mini">催办</button>
@@ -26,4 +26,5 @@
       </view>
     </view>
   </view>
+  <view class='well' wx:if="{{list.length == 0}}">暂无符合条件的物资</view>
 </view>

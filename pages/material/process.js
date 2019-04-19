@@ -10,17 +10,29 @@ Page({
   data: {
     list: [],
     adminList: [],
-    status: ['全部', '未审批', '审批通过', '已借用','拒绝'],
+    status: [{
+      status: -1,
+      val: '全部'
+    }],
     statusIndex: 0,
-    index: 0,
+    status_id: -1,
+    index: 1,
     page_size: 10,
     hasNextPage: 1,
   },
 
   bindStatusChange: function (e) {
+    if (this.data.statusIndex == e.detail.value) {
+      return;
+    }
     this.setData({
-      statusIndex: e.detail.value
+      statusIndex: e.detail.value,
+      status_id: this.data.status[e.detail.value].status,
+      index: 1,
+      list: [],
+      hasNextPage: 1
     })
+    this.getList()
   },
   bindPickerChange: function(e) {
     let goods_id = e.target.dataset.id
@@ -34,13 +46,19 @@ Page({
     this.loading = true;
     Material.getBorrowList({
       index: this.data.index,
-      page_size: this.data.page_size
+      page_size: this.data.page_size,
+      status: this.data.status_id
     }).then((data) => {
       this.setData({
         list: this.data.list.concat(data.goodsInfo),
         index: data.page.index,
         hasNextPage: data.page.hasNextPage
       })
+      if (this.data.status.length == 1) {
+        this.setData({
+          status: this.data.status.concat(data.statusOptions)
+        })
+      }
     }).catch((e) => {
       console.log(e);
       wx.showToast({

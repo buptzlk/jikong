@@ -24,12 +24,14 @@ const borrow = function({
 
 const getBorrowList = function({
   index,
-  page_size
+  page_size,
+  status
 }) {
   return Http.post(domain + 'goods/borrowList', {
     open_id: app.globalData.openid,
     index,
-    page_size
+    page_size,
+    status
   })
 }
 

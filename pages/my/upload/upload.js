@@ -1,6 +1,7 @@
 // pages/my/upload/upload.js
 
 import WeCropper from '../../../we-cropper/we-cropper.js'
+const {showErrMsg} = require('../../../utils/util.js')
 
 const device = wx.getSystemInfoSync()
 const width = device.windowWidth
@@ -66,20 +67,18 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success(res) {
         const src = res.tempFilePaths[0]
-
         self.cropper.pushOrign(src)
       }
     })
   },
   getCropperImage() {
     this.cropper.getCropperImage((tempFilePath) => {
-      // tempFilePath 为裁剪后的图片临时路径
       if (tempFilePath) {
         wx.redirectTo({
-          url: `../avatar?avatarUrl=${tempFilePath}`,
+          url: `../avatar?avatarUrl=${tempFilePath}&set=1`,
         })
       } else {
-        console.log('获取图片地址失败，请稍后重试')
+        showErrMsg('获取图片地址失败，请稍后重试')
       }
     })
   },

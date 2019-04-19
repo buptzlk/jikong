@@ -14,8 +14,10 @@ Page({
     complete: ''
   },
   naviAvatar: function() {
+    let userInfo = app.globalData.userInfo
+    let avatarUrl = userInfo.cover_img_url || userInfo.avatarUrl
     wx.navigateTo({
-      url: `./avatar?avatarUrl=${app.globalData.userInfo.avatarUrl}`,
+      url: `./avatar?avatarUrl=${avatarUrl}`,
     })
   },
   /**

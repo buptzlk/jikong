@@ -11,10 +11,6 @@ Page({
     slideInfo: null,
     noticeCount: 0
   },
-  onLoad: function() { 
-    this.getHomeData();  
-    this.getUserData(); 
-  },
   getHomeData: function() {
     Home.getHomeInfo().then((data) => {
       this.setData({
@@ -32,9 +28,6 @@ Page({
     })
   },
   getUserData: function() {
-    if (app.globalData.userInfo.name) {
-      return;
-    }
     User.getUserInfo().then((data) => {
       this.setData({
         userInfo: app.globalData.userInfo
@@ -76,5 +69,11 @@ Page({
     wx.navigateTo({
       url: '/pages/message/list',
     })
+  },
+  onLoad: function () {
+  },
+  onShow: function() {
+    this.getHomeData();
+    this.getUserData();
   }
 })

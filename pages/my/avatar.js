@@ -1,5 +1,7 @@
 // pages/my/avater.js
 const app = getApp()
+const User = require('../../service/user.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
 
@@ -44,7 +46,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.options.avatarUrl, this.options.set);
+    if (this.options.set) {
+      let newAvatarUrl = this.options.avatarUrl
+      User.updateUser({
+        cover_img_url: newAvatarUrl
+      }).then(() => {
+        app.globalData.userInfo.cover_img_url = newAvatarUrl;
+      }).catch((e) => {
+        console.log(e)
+        showErrMsg(e || '更新头像失败')
+      })
+      // wx.uploadFile({
+      //   url: 'https://www.knowalker.com/api/file/uploadImg',
+      //   filePath: this.options.avatarUrl,
+      //   name: 'img',
+      //   name: 'file',
+      //   formData: {
+      //     open_id: app.globalData.openid
+      //   },
+      //   success(res) {
+      //     const data = res.data
+      //     console.log(data);
+      //   }
+      // })    
+    }
   },
 
   /**

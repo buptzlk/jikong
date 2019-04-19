@@ -1,5 +1,5 @@
 <!--pages/my/avater.wxml-->
 <view>
   <image class='avatar' src="{{avatarUrl}}"></image>
-  <button bindtap="upload">设置个人头像</button>
+  <button type="primary" bindtap="upload">设置个人头像</button>
 </view>

@@ -1,4 +1,5 @@
 const Material = require('../../service/material.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
   /**
@@ -44,8 +45,19 @@ Page({
     })
   },
   borrowMaterial: function() {
-    wx.navigateTo({
-      url: 'msg_success'
+    let goods = this.data.selectedList.map((item) => {
+      return {
+        goods_id: item.id,
+        borrow_num: item.borrow
+      }
+    })
+    Material.borrow({goods: JSON.stringify(goods)}).then(() => {
+      wx.navigateTo({
+        url: 'msg_success'
+      })
+    }).catch((e) => {
+      console.log(e);
+      showErrMsg(e || '物资借用失败')
     })
   },
   changeNumber: function(e) {
@@ -70,6 +82,11 @@ Page({
         return item.borrow > 0;
       })
     })
+    if (this.data.selectedList.length == 0 && this.data.isShowList) {
+        this.setData({
+          isShowList: false,
+        })
+    }
   },
   hideMask: function(e) {
     if (e.currentTarget.id === 'mask') {
@@ -125,7 +142,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      index: 1,
+      hasNextPage: 1,
+      list: [],
+      selectedList: []
+    })
+    this.getList();
   },
 
   /**

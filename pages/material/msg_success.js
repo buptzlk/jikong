@@ -1,7 +1,12 @@
 Page({
   naviProcess: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: 'process',
+    })
+  },
+  naviHome: function() {
+    wx.switchTab({
+      url: '../index/index',
     })
   }
 });

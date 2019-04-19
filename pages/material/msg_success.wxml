@@ -10,7 +10,7 @@
     </view>
     <view class="weui-msg__opr-area">
       <view class="weui-btn-area">
-        <button class="weui-btn" type="primary">首页</button>
+        <button class="weui-btn" type="primary" bindtap="naviHome">首页</button>
         <button class="weui-btn" type="default" bindtap="naviProcess">查看进度</button>
       </view>
     </view>

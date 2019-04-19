@@ -51,7 +51,7 @@ Page({
         borrow_num: item.borrow
       }
     })
-    Material.borrow({goods: JSON.stringify(goods)}).then(() => {
+    Material.borrow({goods}).then(() => {
       wx.navigateTo({
         url: 'msg_success'
       })

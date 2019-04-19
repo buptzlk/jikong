@@ -13,9 +13,6 @@ const http = (method, url, data) => {
       url,
       method,
       data,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      }, 
       success(res) {
         if (res.data.status_code == 0) {
           resolve(res.data.data);

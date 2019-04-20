@@ -8,9 +8,6 @@
     </view>
     <view class="weui-article__section">
       <view class="weui-article__p">
-        <image class="weui-article__img" src="{{newsInfo.cover_img_url}}" mode="aspectFit" />
-      </view>
-      <view class="weui-article__p">
         {{newsInfo.content}}
       </view>
     </view>

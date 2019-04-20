@@ -6,7 +6,6 @@
   </view>
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl}}"></image>
-    <view class="userinfo-nickname">{{userInfo.name}}</view>
   </view>
   <view class="flex-row dashboard">
     <view class="flex-row-item" bindtap='naviAnswer'>
@@ -47,6 +46,6 @@
     <navigator url="/pages/study/detail?id={{item.id}}"class="flex-row-item" wx:for="{{newsInfo}}" wx:key="id">
       <image src="{{item.cover_img_url}}"></image>
       <view class="news-title">{{item.title}}</view>
-    </navigator>>
+    </navigator>
   </view>
 </view>

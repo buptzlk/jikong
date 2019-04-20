@@ -1,14 +1,24 @@
 <view class="container">
-  <text class="question-type">{{question.type}}</text>
-  <text class="question-desc">{{question.desc}}</text>
-  <view wx:for="{{question.choices}}" wx:key="{{index}}" class='choice'>
-    <button>{{item.content}}</button>
+  <view class="flex-row">
+    <view class="weui-badge weui-badge-orange">{{question.type}}</view>
+    <view class="weui-badge weui-badge-blue">我要反馈</view>
   </view>
-  <view class="question-answer" wx:if="{{answer_type == 1}}">
-    <text>正确答案：{{question.answer}}</text>
+  <view class="question-desc">{{question.title}}</view>
+  <view wx:if="{{question.type == '单选题'}}">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio choice" wx:for="{{question.options}}"  wx:key="index">
+        <radio value="{{index}}" checked="{{item.checked}}" /> {{item}}
+      </label>
+    </radio-group>
+  </view>
+  <view wx:else>
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox choice" wx:for="{{question.options}}" wx:key="index">
+        <checkbox value="{{index}}" checked="{{item.checked}}" /> {{item}}
+      </label>
+    </checkbox-group>
   </view>
   <view class="btn-group">
-    <button size="mini" bindtap="next">下一题</button>
-    <button size="mini" wx:if="{{answer_type == 1}}">学会了</button>
+    <button type="primary" bindtap="submit">提交</button>
   </view>
 </view>

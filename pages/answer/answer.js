@@ -1,32 +1,44 @@
+const Question = require('../../service/question.js')
+const {showErrMsg} = require('../../utils/util.js')
+
 Page({
   data: {
-    question: {
-      type: '单选题',
-      desc: '急救病人的车是什么车？',
-      choices: [{
-        content: '救护车'
-      }, {
-        content: '卡车'
-      }, {
-        content: '消防车'
-      }],
-      answer: '救护车'
-    },
-    answer_type: 0
+    question: null,
+    answer: '[]'
   },
-  onLoad: function () {
-    this.setData({
-      answer_type: +this.options.type
-    })
-    if (this.options.type === '1') {
-      wx.setNavigationBarTitle({
-        title: '错题本'
+  onLoad: function() {
+    this.getQuestion()
+  },
+  getQuestion: function() {
+    Question.get().then(data => {
+      this.setData({
+        question: data
       })
-    }
+    }).catch(e => {
+      showErrMsg(e || '获取题目失败')
+    })
   },
-  next() {
-    wx.navigateTo({
-      url: 'result',
+  radioChange(e) {
+    this.setData({
+      answer: `[${e.detail.value}]`
+    })
+  },
+  checkboxChange(e) {
+    this.setData({
+      answer: `[${e.detail.value}]`
+    })
+  },
+  submit() {
+    if (this.data.answer == '[]') {
+      showErrMsg('请作答后再提交')
+    }
+    Question.submit({
+      question_id: this.data.question.id,
+      answer: this.data.answer
+    }).then(() => {
+      
+    }).catch(e => {
+      showErrMsg(e || '提交答案失败')
     })
   }
 })

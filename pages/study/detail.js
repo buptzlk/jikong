@@ -1,18 +1,30 @@
 // pages/study/detail.js
+const Study = require('../../service/study.js')
+const {showErrMsg} = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    newsInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (options) { 
+    Study.getDetail({
+      id: options.id
+    }).then(data => {
+      this.setData({
+        newsInfo: data
+      })
+    }).catch((e) => {
+      console.log(e)
+      showErrMsg(e || '获取详情失败')
+    })
   },
 
   /**

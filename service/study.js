@@ -13,6 +13,16 @@ const getStudyList = function({
   })
 }
 
+const getDetail = function({
+  id
+}) {
+  return Http.post(domain + 'news/get', {
+    open_id: app.globalData.openid,
+    id
+  })
+}
+
 module.exports = {
-  getStudyList
+  getStudyList,
+  getDetail
 }

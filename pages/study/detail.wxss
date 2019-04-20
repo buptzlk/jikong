@@ -1,8 +1,13 @@
 /* pages/study/detail.wxss */
+page {
+  background: #fff;
+}
 .weui-article__p .weui-article__img {
-  height: 180px;
   margin: 0 auto;
   display: block;
+}
+.weui-article__p {
+  text-indent: 2em;
 }
 .weui-article__h1 {
   text-align: center;

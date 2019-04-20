@@ -1,20 +1,17 @@
 <!--pages/study/detail.wxml-->
 <view>
   <view class="weui-article">
-    <view class="weui-article__h1">大标题</view>
+    <view class="weui-article__h1">{{newsInfo.title}}</view>
     <view class="weui-article__time">
-      <text>发布时间：2019-04-12 12:12:12</text>
-      <text>阅读次数：1</text>
+      <text>发布时间：{{newsInfo.created_at}}</text>
+      <text>阅读次数：{{newsInfo.views}}</text>
     </view>
     <view class="weui-article__section">
       <view class="weui-article__p">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <image class="weui-article__img" src="{{newsInfo.cover_img_url}}" mode="aspectFit" />
       </view>
       <view class="weui-article__p">
-        <image class="weui-article__img" src="/image/banner.png" mode="aspectFit" />
-      </view>
-      <view class="weui-article__p">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        {{newsInfo.content}}
       </view>
     </view>
   </view>

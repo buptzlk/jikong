@@ -1,5 +1,5 @@
 const Material = require('../../service/material.js')
-const {showErrMsg} = require('../../utils/util.js')
+const {showErrMsg, debounce} = require('../../utils/util.js')
 
 Page({
   /**
@@ -35,7 +35,21 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+    if (!this.debounceSearch) {
+      this.debounceSearch = debounce(this.search)
+    }
+    this.debounceSearch()
   },
+
+  search: function() {
+    this.setData({
+      index: 1,
+      list: [],
+      hasNextPage: 1
+    })
+    this.getList()
+  },
+
   toggleBorrowedList: function() {
     if (!this.data.selectedList.length) {
       return;
@@ -88,6 +102,21 @@ Page({
         })
     }
   },
+  changeSelectedNumber: function(e) {
+    let index = e.detail.index;
+    let type = e.detail.type;
+    let key = `selectedList[${index}].borrow`;
+    let val = this.data.selectedList[index].borrow || 0;
+    if (type == 1) {
+      this.setData({
+        [key]: val + 1
+      });
+    } else {
+      this.setData({
+        [key]: val - 1
+      });
+    }
+  },
   hideMask: function(e) {
     if (e.currentTarget.id === 'mask') {
       this.setData({
@@ -100,9 +129,14 @@ Page({
       return;
     }
     this.loading = true;
-    Material.getMaterialList({
+    let getFun = Material.getMaterialList;
+    if (this.data.inputVal) {
+      getFun = Material.search
+    }
+    getFun({
       index: this.data.index,
-      page_size: this.data.page_size
+      page_size: this.data.page_size,
+      word: this.data.inputVal
     }).then((data) => {
       this.setData({
         list: this.data.list.concat(data.goodsInfo),

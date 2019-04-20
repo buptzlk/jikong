@@ -21,7 +21,18 @@ function showErrMsg(msg) {
   })
 }
 
+function debounce(fnc) {
+  let timer = null;
+  return function () {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(fnc, 500)
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
-  showErrMsg
+  showErrMsg,
+  debounce,
 }

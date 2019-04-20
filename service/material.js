@@ -50,10 +50,23 @@ const remind = function({borrow_id, admin_id}) {
   })
 }
 
+const search = function({
+  word,
+  index,
+  page_size
+}) {
+  return Http.post(domain + 'goods/search', {
+    open_id: app.globalData.openid,
+    word,
+    index
+  })
+}
+
 module.exports = {
   getMaterialList,
   borrow,
   getBorrowList,
   getAdminList,
-  remind
+  remind,
+  search
 }

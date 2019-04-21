@@ -5,9 +5,24 @@ const app = getApp();
 const uploadFile = function({
   img
 }) {
-  return Http.post(domain + 'file/uploadImg', {
-    open_id: app.globalData.openid,
-    img
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: domain + 'file/uploadImg',
+      filePath: img,
+      header: {
+        'content-type': 'multipart/form-data'
+      },
+      name: 'img',
+      formData: {
+        open_id: app.globalData.openid
+      },
+      success(res) {
+        resolve(res.data)
+      },
+      fail() {
+        reject('上传头像失败')
+      }
+    }) 
   })
 }
 

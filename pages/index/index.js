@@ -42,12 +42,12 @@ Page({
   },
   naviAnswer: function() {
     wx.navigateTo({
-      url: '/pages/answer/answer?type=0',
+      url: '/pages/answer/answer',
     })
   },
   naviWrong: function() {
     wx.navigateTo({
-      url: '/pages/answer/answer?type=1',
+      url: '/pages/answer/wrong',
     })
   },
   naviMaterial: function() {

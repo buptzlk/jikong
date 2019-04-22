@@ -1,11 +1,11 @@
 <view class="container">
   <view wx:if="{{question}}">
     <view class="flex-row">
-      <view class="weui-badge weui-badge-orange">{{question.type}}</view>
+      <view class="weui-badge weui-badge-orange">{{question.typeName}}</view>
       <view class="weui-badge weui-badge-blue" bindtap="showFeedbackModal">我要反馈</view>
     </view>
     <view class="question-desc">{{question.title}}</view>
-    <view wx:if="{{question.type == '单选题'}}">
+    <view wx:if="{{question.type == 0}}">
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio choice" wx:for="{{question.options}}" wx:key="index">
           <radio value="{{index}}" checked="{{item.checked}}" /> {{item}}

@@ -70,8 +70,7 @@ Page({
         url: 'msg_success'
       })
     }).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '物资借用失败')
+      showErrMsg(e.message || '物资借用失败')
     })
   },
   changeNumber: function(e) {

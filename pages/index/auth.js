@@ -38,8 +38,7 @@ Page({
           })
           return;
         }
-        console.log(e);
-        showErrMsg('登录失败');
+        showErrMsg(e.message || '登录失败');
       })
     }
   }

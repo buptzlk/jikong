@@ -19,7 +19,7 @@ Page({
         question: data
       })
     }).catch(e => {
-      showErrMsg(e || '获取题目失败')
+      showErrMsg(e.message || '获取题目失败')
     })
   },
   showFeedbackModal() {
@@ -64,12 +64,19 @@ Page({
     Question.submit({
       question_id: this.data.question.id,
       answer: this.data.answer
-    }).then(() => {
+    }).then((data) => {
+      let resultContent = ''
+      if (data.isCorrenct) {
+        resultContent = '恭喜您答对了！'
+      } else {
+        resultContent = `答错了，正确答案为${data.correctAnswer}。`
+      }
       this.setData({
+        resultContent,
         resultModalHidden: false
       })
     }).catch(e => {
-      showErrMsg(e || '提交答案失败')
+      showErrMsg(e.message || '提交答案失败')
     })
   },
   next() {

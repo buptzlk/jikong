@@ -22,7 +22,8 @@ const http = (method, url, data) => {
           })
           reject(res.data);
         } else {
-          reject(res.data.message);
+          console.log(res.data)
+          reject(new Error(res.data.message));
         }
       },
       fail(err) {

@@ -28,7 +28,7 @@ Page({
         hasNextPage: data.page.hasNextPage
       })
     }).catch((e) => {
-      showErrMsg(e || '获取错题资料失败')
+      showErrMsg(e.message || '获取错题资料失败')
     }).then(() => {
       this.loading = false;
     })
@@ -40,7 +40,7 @@ Page({
     }).then((data) => {
       showSuccMsg('操作成功')
     }).catch(e => {
-      showErrMsg(e || '操作失败')
+      showErrMsg(e.message || '操作失败')
     })
   },
   /**

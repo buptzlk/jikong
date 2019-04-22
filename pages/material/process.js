@@ -2,6 +2,7 @@
 const Material = require('../../service/material.js')
 const {
   showErrMsg,
+  showSuccMsg,
   formatTime
 } = require('../../utils/util.js')
 
@@ -44,12 +45,9 @@ Page({
       borrow_id,
       admin_id
     }).then((data) => {
-      wx.showToast({
-        title: '已提醒',
-      })
+      showSuccMsg('已提醒')
     }).catch((e) => {
-      console.log(e)
-      showErrMsg(e || '催办失败')
+      showErrMsg(e.message || '催办失败')
     })
   },
   getList: function() {
@@ -88,8 +86,7 @@ Page({
         adminList: data
       })
     }).catch((e) => {
-      console.log(e)
-      showErrMsg(e || '获取管理员列表失败')
+      showErrMsg(e.message || '获取管理员列表失败')
     })
   },
   /**

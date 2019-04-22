@@ -1,5 +1,6 @@
 // pages/message/list.js
 const Notice = require('../../service/notice.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
 
@@ -31,11 +32,7 @@ Page({
           Notice.readNotice({
             notice_id: self.data.list[index].id
           }).catch((e) => {
-            console.log(e);
-            wx.showToast({
-              icon: 'none',
-              title: '标记消息已读失败',
-            })
+            showErrMsg(e.message || '标记消息已读失败')
           })
         }
       }
@@ -57,11 +54,7 @@ Page({
         hasNextPage: data.page.hasNextPage
       })
     }).catch((e) => {
-      console.log(e);
-      wx.showToast({
-        icon: 'none',
-        title: '获取消息失败'
-      })
+      showErrMsg(e.message || '获取消息失败')
     }).then(() => {
       this.loading = false;
     })

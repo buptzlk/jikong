@@ -1,5 +1,6 @@
 // pages/study/list.js
 const Study = require('../../service/study.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
 
@@ -27,11 +28,7 @@ Page({
         hasNextPage: data.page.hasNextPage
       })
     }).catch((e) => {
-      console.log(e);
-      wx.showToast({
-        icon: 'none',
-        title: '获取学习资料失败',
-      })
+      showErrMsg(e.message || '获取学习资料失败')
     }).then(() => {
       this.loading = false;
     })

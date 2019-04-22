@@ -63,7 +63,7 @@ Page({
         delta: 1
       })
     }).catch(e => {
-      showErrMsg(e || '修改手机号失败') 
+      showErrMsg(e.message || '修改手机号失败') 
     })
   },
 
@@ -98,8 +98,7 @@ Page({
         codeImgUrl: data.url
       })
     }).catch((e) => {
-      console.log(e);
-      showErrMsg('获取验证码失败')
+      showErrMsg(e.message || '获取验证码失败')
     })
   }
 })

@@ -22,8 +22,7 @@ Page({
         newsInfo: data
       })
     }).catch((e) => {
-      console.log(e)
-      showErrMsg(e || '获取详情失败')
+      showErrMsg(e.message || '获取详情失败')
     })
   },
 

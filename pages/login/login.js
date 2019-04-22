@@ -57,7 +57,7 @@ Page({
       })
     }).catch((e) => {
       console.log(e);
-      showErrMsg(e || '登录校验失败')
+      showErrMsg(e.message || '登录校验失败')
     })
   },
   sendVerifyCode: function() {

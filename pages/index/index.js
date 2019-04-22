@@ -3,6 +3,7 @@
 const app = getApp()
 const User = require('../../service/user.js');
 const Home = require('../../service/index.js')
+const {showErrMsg} = require('../../utils/util.js')
 
 Page({
   data: {
@@ -20,11 +21,7 @@ Page({
       })
       app.globalData.noticeCount = data.noticeCount
     }).catch((e) => {
-      console.log(e);
-      wx.showToast({
-        icon: 'none',
-        title: '获取首页信息失败',
-      })
+      showErrMsg(e.message || '获取首页信息失败')
     })
   },
   getUserData: function() {
@@ -33,11 +30,7 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }).catch((e) => {
-      console.log(e);
-      wx.showToast({
-        icon: 'none',
-        title: '获取用户信息失败',
-      })
+      showErrMsg(e.message || '获取用户信息失败')
     })
   },
   naviAnswer: function() {

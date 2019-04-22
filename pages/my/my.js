@@ -34,8 +34,7 @@ Page({
         complete: data.complete
       })
     }).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '获取用户信息失败')
+      showErrMsg(e.message || '获取用户信息失败')
     })
   },
 

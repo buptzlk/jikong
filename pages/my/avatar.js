@@ -53,7 +53,7 @@ Page({
       Tool.uploadFile({img: newAvatarUrl}).then((data) => {
         self.updateAvatarUrl(data.url)
       }).catch(e => {
-        showErrMsg(e || '上传头像失败')
+        showErrMsg(e.message || '上传头像失败')
       })   
     }
   },
@@ -64,7 +64,7 @@ Page({
     }).then(() => {
       app.globalData.userInfo.cover_img_url = url;
     }).catch((e) => {
-      showErrMsg(e || '更新头像失败')
+      showErrMsg(e.message || '更新头像失败')
     })
   },
 

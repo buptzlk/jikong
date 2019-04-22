@@ -51,8 +51,7 @@ Page({
     User.updateUser({
       group_id: this.data.companys[companyIndex].id
     }).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '设置单位失败')
+      showErrMsg(e.message || '设置单位失败')
     })
   },
   bindDepartmentChange: function(e) {
@@ -69,8 +68,7 @@ Page({
     User.updateUser({
       department_id: departments[departmentIndex].id
     }).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '设置科室失败')
+      showErrMsg(e.message || '设置科室失败')
     })
   },
   naviAvatar() {
@@ -82,6 +80,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let self = this;
     this.setData({
       'userInfo': app.globalData.userInfo
     })
@@ -97,8 +96,7 @@ Page({
         companyIndex
       })
     }).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '获取单位失败')
+      showErrMsg(e.message || '获取单位失败')
     })
     User.getDepartments().then((data => {
       let departmentIndex = -1;
@@ -112,8 +110,12 @@ Page({
         departmentIndex
       })
     })).catch((e) => {
-      console.log(e);
-      showErrMsg(e || '获取科室失败')
+      showErrMsg(e.message || '获取科室失败')
+    })
+    this.setData({
+      'politicalIndex': this.data.politicals.findIndex(function(item) {
+        return item == self.data.userInfo.political
+      })
     })
   },
 

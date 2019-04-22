@@ -21,6 +21,12 @@ function showErrMsg(msg) {
   })
 }
 
+function showSuccMsg(msg) {
+  wx.showToast({
+    title: msg,
+  })
+}
+
 function debounce(fnc) {
   let timer = null;
   return function () {
@@ -34,5 +40,6 @@ function debounce(fnc) {
 module.exports = {
   formatTime: formatTime,
   showErrMsg,
+  showSuccMsg,
   debounce,
 }

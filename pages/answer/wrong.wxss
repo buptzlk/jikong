@@ -1,0 +1,19 @@
+/* pages/answer/wrong.wxss */
+.container {
+  display: block;
+}
+.weui-media-box {
+  background: #fff;
+}
+.weui-media-box__title {
+  margin-bottom: 0.5em;
+}
+.flex-row {
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-row button {
+  margin: 0;
+}

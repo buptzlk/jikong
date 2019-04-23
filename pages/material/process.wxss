@@ -1,8 +1,9 @@
 /* pages/material/process.wxss */
 .container {
-  display: block;
+  min-height: 100%;
 }
 .weui-cell {
+  width: 100%;
   background: #fff;
 }
 .weui-media-box {

@@ -1,4 +1,7 @@
 /* pages/study/list.wxss */
+.container {
+  min-height: 100%;
+}
 .weui-media-box {
   background: #fff;
   margin-bottom: 1rpx;

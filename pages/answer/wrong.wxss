@@ -1,12 +1,18 @@
 /* pages/answer/wrong.wxss */
 .container {
-  display: block;
+  min-height: 100%;
 }
 .weui-media-box {
   background: #fff;
 }
+.weui-media-box__desc {
+  line-height: 1.7;
+  color: #444;
+}
 .weui-media-box__title {
   margin-bottom: 0.5em;
+  font-size: 16px;
+  white-space: wrap;
 }
 .flex-row {
   margin-top: 0.5em;

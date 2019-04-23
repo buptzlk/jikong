@@ -26,5 +26,5 @@
       </view>
     </view>
   </view>
-  <view class='well' wx:if="{{list.length == 0}}">暂无符合条件的物资</view>
+  <view class='well' wx:if="{{list.length == 0}}">暂无符合条件的物资~</view>
 </view>

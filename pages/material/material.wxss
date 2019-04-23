@@ -1,8 +1,10 @@
 .container {
-  display: block;
-  padding-bottom: 100rpx; 
+  padding-bottom: 100rpx;
+  min-height: 100%; 
 }
-
+.weui-search-bar {
+  width: 100%;
+}
 .weui-panel {
   margin-top: 0;
 }

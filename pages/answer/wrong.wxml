@@ -1,6 +1,6 @@
 <!--pages/answer/wrong.wxml-->
 <view class='container'>
-  <view class="weui-panel__bd">
+  <view class="weui-panel">
     <view class="weui-media-box" wx:for="{{list}}" wx:key="id">
       <view class="weui-media-box__title">{{item.typeName}}:{{item.title}}</view>
       <view class="weui-media-box__desc">
@@ -8,10 +8,10 @@
           {{item}}
         </view>
         <view class="flex-row">
-          <text>{{item.answer}}</text>
+          <text>{{item.answer}}，{{item.user_answer}}</text>
           <button type="primary" size="mini" data-id="{{item.id}}" bindtap="learned">学会了</button>
         </view>
-     </view>
+      </view>
     </view>
   </view>
   <view wx:if="{{hasNextPage !== 1 && list.length == 0}}" class='well'>暂无错题~</view>

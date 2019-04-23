@@ -1,5 +1,5 @@
 <view class="container">
-  <view wx:if="{{question}}">
+  <view class="question-box" wx:if="{{question}}">
     <view class="flex-row">
       <view class="weui-badge weui-badge-orange">{{question.typeName}}</view>
       <view class="weui-badge weui-badge-blue" bindtap="showFeedbackModal">我要反馈</view>

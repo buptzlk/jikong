@@ -1,6 +1,6 @@
 /* pages/message/list.wxss */
 .container {
-  display: block;
+  min-height: 100%;
 }
 .weui-media-box {
   background: #fff;

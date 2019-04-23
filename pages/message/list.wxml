@@ -1,6 +1,6 @@
 <!--pages/message/list.wxml-->
 <view class='container'>
-  <view class="weui-panel__bd">
+  <view class="weui-panel">
     <view wx:for="{{list}}" wx:key="{{id}}" class="weui-media-box" data-index="{{index}}" bindtap="showModal">
       <view class="weui-media-box__bd">
         <view class="weui-media-box__title">{{item.content}}</view>
@@ -12,5 +12,5 @@
       </view>
     </view>
   </view>
-  <view class="well" wx:if="{{list.length == 0 && hasNextPage !== 1}}">暂无消息</view>
+  <view class="well" wx:if="{{list.length == 0 && hasNextPage !== 1}}">暂无消息～</view>
 </view>

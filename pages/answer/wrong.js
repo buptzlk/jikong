@@ -34,7 +34,6 @@ Page({
     })
   },
   learned(e) {
-    console.log(e.target.dataset.id)
     Question.learned({
       question_id: e.target.dataset.id
     }).then((data) => {

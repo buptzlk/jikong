@@ -7,6 +7,7 @@ page {
 }
 .container {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
@@ -14,5 +15,12 @@ page {
 } 
 .well {
   text-align: center;
-  padding-top: 10%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+}
+.weui-panel {
+  width: 100%;
 }

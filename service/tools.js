@@ -9,15 +9,18 @@ const uploadFile = function({
     wx.uploadFile({
       url: domain + 'file/uploadImg',
       filePath: img,
-      header: {
-        'content-type': 'multipart/form-data'
-      },
       name: 'img',
       formData: {
         open_id: app.globalData.openid
       },
       success(res) {
-        resolve(res.data)
+        res = JSON.parse(res.data)
+        if (res.status_code == 0) {
+          resolve(res.data)
+        } else {
+          reject(new Error(res.message || '上传失败'))
+        }
+        
       },
       fail() {
         reject('上传头像失败')

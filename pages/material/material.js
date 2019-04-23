@@ -59,6 +59,9 @@ Page({
     })
   },
   borrowMaterial: function() {
+    if (this.data.selectedList.length == 0) {
+      return;
+    }
     let goods = this.data.selectedList.map((item) => {
       return {
         goods_id: item.id,

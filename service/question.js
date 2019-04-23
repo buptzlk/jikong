@@ -40,9 +40,21 @@ const getWrongList = function({
   })
 }
 
+const feedback = function({
+  content,
+  question_id
+}) {
+  return Http.post(domain + 'feedback/post', {
+    open_id: app.globalData.openid,
+    content,
+    question_id
+  })
+}
+
 module.exports = {
   get,
   submit,
   learned,
-  getWrongList
+  getWrongList,
+  feedback
 }

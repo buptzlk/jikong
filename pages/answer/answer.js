@@ -1,5 +1,5 @@
 const Question = require('../../service/question.js')
-const {showErrMsg} = require('../../utils/util.js')
+const {showErrMsg, showSuccMsg} = require('../../utils/util.js')
 
 Page({
   data: {
@@ -35,17 +35,24 @@ Page({
   feedbackModalChange(e) {
     console.log(e)
     if (e.type === 'confirm') {
-      console.log(this.data.feedContent)
-      this.setData({
-        feedContent: '',
-        feedbackModalHidden: true
+      Question.feedback({
+        content: this.data.feedContent,
+        question_id: this.data.question.id
+      }).then(() => {
+        this.setData({
+          feedContent: '',
+          feedbackModalHidden: true
+        })
+        showSuccMsg('反馈成功')
+      }).catch(e => {
+        showErrMsg(e.message || '反馈失败')
       })
-    } else {
-      this.setData({
-        feedContent: '',
-        feedbackModalHidden: true
-      })
-    }
+      return;
+    } 
+    this.setData({
+      feedContent: '',
+      feedbackModalHidden: true
+    })
   },
   radioChange(e) {
     this.setData({

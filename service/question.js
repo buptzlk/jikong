@@ -11,12 +11,14 @@ const get = function() {
 
 const submit = function ({
   question_id,
-  answer
+  answer,
+  task_id
 }) {
   return Http.post(domain + 'question/post', {
     open_id: app.globalData.openid,
     question_id,
-    answer
+    answer,
+    task_id
   })
 }
 

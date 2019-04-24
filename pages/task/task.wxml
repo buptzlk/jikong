@@ -1,25 +1,29 @@
 <!--pages/task/task.wxml-->
 <view class="container">
   <view class="weui-cells weui-cells_after-title">
-    <navigator url="/pages/answer/answer?type=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell" hover-class="weui-cell_active" data-type="week" bindtap="showDetail">
       <view class="weui-cell__bd">周任务卡
-        <view class="weui-badge">未做</view>
+        <view wx:if="{{weekTask.isComplete === 0}}" class="weui-badge weui-badge_dot"></view>
       </view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-    <navigator url="/pages/answer/answer?type=2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    </view>
+    <view class="weui-cell" hover-class="weui-cell_active" data-type="month" bindtap="showDetail">
       <view class="weui-cell__bd">月任务卡
-        <view class="weui-badge">未做</view>
+        <view wx:if="{{monthTask.isComplete === 0}}" class="weui-badge weui-badge_dot"></view>
+      </view>
+    </view>
+    <view class="weui-cell" hover-class="weui-cell_active" data-type="year" bindtap="showDetail">
+      <view class="weui-cell__bd">年任务卡
+        <view wx:if="{{yearTask.isComplete === 0}}" class="weui-badge weui-badge_dot"></view>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="naviDirect">
+      <view class="weui-cell__bd">定向任务卡
+        <view wx:if="{{directTask.isComplete === 0}}" class="weui-badge weui-badge_dot"></view>
       </view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-    <navigator url="/pages/answer/answer?type=3" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">年任务卡</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-    <navigator url="/pages/answer/answer?type=4" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">定向任务卡</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
+    </view>
   </view>
+  <modal title="{{modal.title}}" confirm-text="{{modal.confirmText}}" cancel-text="退出任务卡" hidden="{{modal.isHidden}}" bindconfirm="confirm" bindcancel="exitTask">
+    {{modal.content}}
+  </modal>
 </view>

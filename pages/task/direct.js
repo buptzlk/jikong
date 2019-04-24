@@ -1,34 +1,18 @@
-// pages/study/detail.js
-const app = getApp()
-const Study = require('../../service/study.js')
-const {showErrMsg} = require('../../utils/util.js')
-
+// pages/task/direct.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newsInfo: null
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { 
-    let params = {
-      id: +options.id
-    }
-    if (options.taskId) {
-      params.task_id = +options.taskId
-    }
-    Study.getDetail(params).then(data => {
-      this.setData({
-        newsInfo: data
-      })
-    }).catch((e) => {
-      showErrMsg(e.message || '获取详情失败')
-    })
+  onLoad: function (options) {
+
   },
 
   /**
@@ -42,9 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.options.taskId) {
-      app.globalData.task_id = +this.options.taskId
-    }
+
   },
 
   /**

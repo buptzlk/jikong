@@ -40,6 +40,7 @@ App({
     iv: null,
     encryptedData: null,
     code: null,
-    openid: null
+    openid: null,
+    task_id: null
   }
 })

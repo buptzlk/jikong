@@ -5,6 +5,7 @@
 .weui-cell {
   padding: 20px;
 }
-.weui-badge {
-  margin-top: -10rpx;
+.weui-badge_dot {
+  margin-top: -1.5em;
+  margin-left: -0.5em;
 }

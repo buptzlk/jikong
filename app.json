@@ -18,7 +18,8 @@
     "pages/study/detail",
     "pages/message/list",
     "pages/my/avatar",
-    "pages/answer/wrong"
+    "pages/answer/wrong",
+    "pages/task/direct"
   ],
   "window": {
     "backgroundTextStyle": "light",

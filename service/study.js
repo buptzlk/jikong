@@ -4,21 +4,25 @@ const app = getApp();
 
 const getStudyList = function({
   index,
-  page_size
+  page_size,
+  task_id,
 }) {
   return Http.post(domain + 'page/study', {
     open_id: app.globalData.openid,
     page_size,
-    index
+    index,
+    task_id
   })
 }
 
 const getDetail = function({
-  id
+  id,
+  task_id
 }) {
   return Http.post(domain + 'news/get', {
     open_id: app.globalData.openid,
-    id
+    id,
+    task_id
   })
 }
 

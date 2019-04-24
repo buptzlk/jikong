@@ -1,4 +1,5 @@
 const Question = require('../../service/question.js')
+const Task = require('../../service/task.js')
 const {showErrMsg, showSuccMsg} = require('../../utils/util.js')
 
 Page({
@@ -14,7 +15,16 @@ Page({
     this.getQuestion()
   },
   getQuestion: function() {
-    Question.get().then(data => {
+    let request = Question.get
+    let params;
+    if (this.options.taskId) {
+      request = Task.get
+      params = {
+        task_id: +this.options.taskId,
+        index: 0
+      }
+    }
+    request(params).then(data => {
       this.setData({
         question: data
       })
@@ -67,10 +77,12 @@ Page({
   submit() {
     if (this.data.answer == '[]') {
       showErrMsg('请作答后再提交')
+      return;
     }
     Question.submit({
       question_id: this.data.question.id,
-      answer: this.data.answer
+      answer: this.data.answer,
+      task_id: this.options.taskId
     }).then((data) => {
       let resultContent = ''
       if (data.isCorrenct) {

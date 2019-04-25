@@ -23,7 +23,7 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
   </view>
-  <modal title="{{modal.title}}" confirm-text="{{modal.confirmText}}" cancel-text="退出任务卡" hidden="{{modal.isHidden}}" bindconfirm="confirm" bindcancel="exitTask">
+  <easy-modal id="easyModal" title="{{modal.title}}" cancelText="退出任务卡" confirmText="{{modal.confirmText}}" bind:cancelEvent="exitTask" bind:confirmEvent="confirm">
     {{modal.content}}
-  </modal>
+  </easy-modal>
 </view>

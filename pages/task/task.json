@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "任务卡",
-  "usingComponents": {}
+  "usingComponents": {
+    "easy-modal": "/component/easyModal/easy/easyModal"
+  }
 }

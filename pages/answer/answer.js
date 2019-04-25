@@ -6,10 +6,8 @@ Page({
   data: {
     question: null,
     answer: '[]',
-    feedbackModalHidden: true,
     feedContent: '',
     resultContent: '',
-    resultModalHidden: true,
   },
   onLoad: function() {
     this.getQuestion()
@@ -33,35 +31,34 @@ Page({
     })
   },
   showFeedbackModal() {
-    this.setData({
-      feedbackModalHidden: false
-    })
+    this.feedModal.show()
   },
   changeFeedContent(e) {
     this.setData({
       feedContent: e.detail.value
     })
   },
-  feedbackModalChange(e) {
-    console.log(e)
-    if (e.type === 'confirm') {
-      Question.feedback({
-        content: this.data.feedContent,
-        question_id: this.data.question.id
-      }).then(() => {
-        this.setData({
-          feedContent: '',
-          feedbackModalHidden: true
-        })
-        showSuccMsg('反馈成功')
-      }).catch(e => {
-        showErrMsg(e.message || '反馈失败')
-      })
+  feedback() {
+    if (!this.data.feedContent) {
+      showErrMsg('请填写反馈内容')
       return;
-    } 
+    }
+    Question.feedback({
+      content: this.data.feedContent,
+      question_id: this.data.question.id
+    }).then(() => {
+      this.setData({
+        feedContent: '',
+      })
+      showSuccMsg('反馈成功')
+    }).catch(e => {
+      showErrMsg(e.message || '反馈失败')
+    })
+    this.feedModal.hide()
+  },
+  cancelFeedback() {
     this.setData({
-      feedContent: '',
-      feedbackModalHidden: true
+      feedContent: ''
     })
   },
   radioChange(e) {
@@ -92,24 +89,24 @@ Page({
       }
       this.setData({
         resultContent,
-        resultModalHidden: false
       })
+      this.resultModal.show()
     }).catch(e => {
       showErrMsg(e.message || '提交答案失败')
     })
   },
   next() {
-    this.setData({
-      resultModalHidden: true
-    })
+    this.resultModal.hide()
     this.getQuestion()
   },
   exitAnswer() {
-    this.setData({
-      resultModalHidden: true
-    })
+    this.resultModal.hide()
     wx.navigateBack({
       delta: 1
     })
+  },
+  onReady() {
+    this.feedModal = this.selectComponent("#feedModal");
+    this.resultModal = this.selectComponent("#resultModal");
   }
 })

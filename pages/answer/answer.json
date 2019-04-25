@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "答题",
-  "usingComponents": {}
+  "usingComponents": {
+    "easy-modal": "/component/easyModal/easy/easyModal"
+  }
 }

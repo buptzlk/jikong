@@ -14,7 +14,6 @@ Page({
     yearTask: {},
     directTask: {},
     modal: {
-      isHidden: true,
       confirmText: '已完成',
       content: '',
       task: {}
@@ -55,9 +54,9 @@ Page({
       'modal.title': modalTitle,
       'modal.content': task.taskInfo,
       'modal.confirmText': confirmText,
-      'modal.isHidden': false,
       'modal.task': task
     })
+    this.easyModal.show();
   },
   exitTask() {
     wx.switchTab({
@@ -67,9 +66,7 @@ Page({
   confirm() {
     let modal = this.data.modal
     if (modal.task.isComplete === 0) {
-      this.setData({
-        'modal.isHidden': true
-      })
+      this.easyModal.hide();
       if (modal.task.template === 'question') {
         wx.navigateTo({
           url: `/pages/answer/answer?taskId=${modal.task.task_id}`,
@@ -82,9 +79,7 @@ Page({
       }
       return;
     }
-    this.setData({
-      'modal.isHidden': true
-    })
+    this.easyModal.hide();
     return;
   },
   naviDirect() {
@@ -94,9 +89,9 @@ Page({
         'modal.title': '定向任务卡',
         'modal.confirmText': '确定',
         'modal.content': task.taskInfo,
-        'modal.isHidden': false,
         'modal.task': task
       })
+      this.easyModal.show();
     } else {
       wx.navigateTo({
         url: `/pages/task/direct?taskId=${task.task_id}`,
@@ -114,7 +109,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.easyModal = this.selectComponent("#easyModal");
   },
 
   /**

@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="header">
+  <navigator url="/pages/study/detail?id={{slideInfo.id}}" class="header">
     <image class="banner" src="{{slideInfo.cover_img_url}}"></image>
     <text class="title">{{slideInfo.title}}</text>
-  </view>
+  </navigator>
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl}}"></image>
   </view>

@@ -62,7 +62,9 @@ Page({
     User.updateUser({
       cover_img_url: url
     }).then(() => {
-      app.globalData.userInfo.cover_img_url = url;
+      wx.navigateBack({
+        delta: 1
+      })
     }).catch((e) => {
       showErrMsg(e.message || '更新头像失败')
     })

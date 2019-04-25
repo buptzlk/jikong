@@ -1,1 +1,10 @@
 /* pages/task/direct.wxss */
+.container {
+  background: #fff;
+}
+.weui-cells {
+  width: 100%;
+}
+.content {
+  margin: 1em;
+}

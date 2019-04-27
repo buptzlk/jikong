@@ -2,7 +2,7 @@
 const app = getApp()
 const User = require('../../service/user.js')
 const Tool = require('../../service/tools.js')
-const {showErrMsg} = require('../../utils/util.js')
+const {showErrMsg, showSuccMsg} = require('../../utils/util.js')
 
 Page({
 
@@ -62,9 +62,13 @@ Page({
     User.updateUser({
       cover_img_url: url
     }).then(() => {
-      wx.navigateBack({
-        delta: 1
-      })
+      app.globalData.userInfo.cover_img_url = url
+      showSuccMsg('图像上传成功')
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 300)
     }).catch((e) => {
       showErrMsg(e.message || '更新头像失败')
     })

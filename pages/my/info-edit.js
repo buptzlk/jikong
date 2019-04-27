@@ -72,8 +72,9 @@ Page({
     })
   },
   naviAvatar() {
+    let url = app.globalData.userInfo.cover_img_url || app.globalData.userInfo.avatarUrl
     wx.navigateTo({
-      url: `avatar?avatarUrl=${app.globalData.userInfo.avatarUrl}`,
+      url: `avatar?avatarUrl=${url}`,
     })
   },
   /**
@@ -130,7 +131,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      'userInfo': app.globalData.userInfo
+    })
   },
 
   /**

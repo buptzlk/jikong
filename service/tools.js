@@ -30,12 +30,10 @@ const uploadFile = function({
 }
 
 const sendMsg = function({
-  captcha,
   phone
 }) {
-  return Http.post(domain + 'msg/send', {
+  return Http.post(domain + 'msg/sendV2', {
     open_id: app.globalData.openid,
-    captcha,
     phone
   })
 }

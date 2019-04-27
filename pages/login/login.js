@@ -6,30 +6,30 @@ const User =  require('../../service/user.js')
 Page({
   data: {
     tel: null,
-    captchaUrl: '',
-    captcha: '',
+    // captchaUrl: '',
+    // captcha: '',
     verifyCode: null,
   },
   onLoad: function () {
-    Tool.getCaptcha().then((data) => {
-      this.setData({
-        captchaUrl: data.url
-      })
-    }).catch((e) => {
-      console.log(e);
-      showErrMsg('获取验证码失败')
-    })
+    // Tool.getCaptcha().then((data) => {
+    //   this.setData({
+    //     captchaUrl: data.url
+    //   })
+    // }).catch((e) => {
+    //   console.log(e);
+    //   showErrMsg('获取验证码失败')
+    // })
   },
   setTel: function(e) {
     this.setData({
       tel: e.detail.value
     });
   },
-  setCaptcha: function (e) {
-    this.setData({
-      captcha: e.detail.value
-    });
-  },
+  // setCaptcha: function (e) {
+  //   this.setData({
+  //     captcha: e.detail.value
+  //   });
+  // },
   formSubmit: function (e) {
     if (!e.detail.value.username) {
       showErrMsg('请输入姓名');
@@ -65,12 +65,12 @@ Page({
       showErrMsg('请输入正确的手机号码')
       return;
     }
-    if (!this.data.captcha) {
-      showErrMsg('请输入图形验证码')
-      return;
-    }
+    // if (!this.data.captcha) {
+    //   showErrMsg('请输入图形验证码')
+    //   return;
+    // }
     Tool.sendMsg({
-      captcha: this.data.captcha,
+      // captcha: this.data.captcha,
       phone: this.data.tel
     }).catch((e) => {
       console.log(e);

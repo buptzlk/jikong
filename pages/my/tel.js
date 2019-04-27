@@ -14,7 +14,7 @@ Page({
     newTel: null,
     vcode: null,
     codeImgUrl: null,
-    imgCode: null
+    // imgCode: null
   },
 
   setNewTel: function(e) {
@@ -35,11 +35,11 @@ Page({
     });
   },
 
-  setImgCode: function(e) {
-    this.setData({
-      imgCode: e.detail.value
-    });
-  },
+  // setImgCode: function(e) {
+  //   this.setData({
+  //     imgCode: e.detail.value
+  //   });
+  // },
 
   submitForm: function() {
     if (!this.data.newTel || !verifyTel(this.data.newTel)) {
@@ -68,10 +68,10 @@ Page({
   },
 
   sendVcode: function() {
-    if (!this.data.imgCode) {
-      showErrMsg('请输入图型验证码')
-      return;
-    }
+    // if (!this.data.imgCode) {
+    //   showErrMsg('请输入图型验证码')
+    //   return;
+    // }
     if (!this.data.newTel || !verifyTel(this.data.newTel)) {
       showErrMsg('请输入新手机号')
       return;
@@ -81,7 +81,7 @@ Page({
       return;
     }
     Tool.sendMsg({
-      captcha: this.data.imgCode,
+      // captcha: this.data.imgCode,
       phone: this.data.newTel	
     }).catch((e) => {
       console.log(e)

@@ -16,7 +16,7 @@
     <view class="we-input-item">
       <image class="icon" src="/image/verify.png"></image>
       <input class="weui-input" type="number" name="verifyCode" placeholder-class="phcolor" placeholder="请输入验证码" />
-      <button class="weui-btn mini-btn warn-btn" type="default" size="mini" bindtap='sendVerifyCode'>发送验证码</button>
+      <button class="weui-btn mini-btn warn-btn" type="default" size="mini" bindtap='sendVerifyCode'>{{canSendVerify? '发送验证码': timer + 's'}}</button>
     </view>
     <view class="btn-area">
       <button formType="submit">登录校验</button>

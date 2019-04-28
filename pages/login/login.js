@@ -3,8 +3,12 @@ const { showErrMsg } = require('../../utils/util.js')
 const Tool = require('../../service/tools.js')
 const User =  require('../../service/user.js')
 
+const delayTime = 60;
+
 Page({
   data: {
+    timer: delayTime,
+    canSendVerify: true,
     tel: null,
     // captchaUrl: '',
     // captcha: '',
@@ -69,6 +73,14 @@ Page({
     //   showErrMsg('请输入图形验证码')
     //   return;
     // }
+    if (!this.data.canSendVerify) {
+      return;
+    }
+    this.setData({
+      canSendVerify: false
+    })
+    this.countDown();
+
     Tool.sendLoginMsg({
       // captcha: this.data.captcha,
       phone: this.data.tel
@@ -76,5 +88,21 @@ Page({
       console.log(e);
       showErrMsg(e.message || '发送验证码失败')
     })
+  },
+  countDown: function () {
+    let self = this;
+    if (this.data.timer > 0) {
+      setTimeout(function () {
+        self.setData({
+          timer: self.data.timer - 1
+        });
+        self.countDown();
+      }, 1000);
+    } else if (!this.data.canSendVerify) {
+      this.setData({
+        timer: delayTime,
+        canSendVerify: true
+      })
+    }
   }
 })

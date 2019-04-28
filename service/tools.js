@@ -38,6 +38,15 @@ const sendMsg = function({
   })
 }
 
+const sendLoginMsg = function ({
+  phone
+}) {
+  return Http.post(domain + 'msg/send', {
+    open_id: app.globalData.openid,
+    phone
+  })
+}
+
 const getCaptcha = function() {
   return Http.post(domain + 'captcha', {
     open_id: app.globalData.openid
@@ -47,5 +56,6 @@ const getCaptcha = function() {
 module.exports = {
   uploadFile,
   sendMsg,
+  sendLoginMsg,
   getCaptcha
 }

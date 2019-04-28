@@ -69,12 +69,12 @@ Page({
     //   showErrMsg('请输入图形验证码')
     //   return;
     // }
-    Tool.sendMsg({
+    Tool.sendLoginMsg({
       // captcha: this.data.captcha,
       phone: this.data.tel
     }).catch((e) => {
       console.log(e);
-      showErrMsg('发送验证码失败')
+      showErrMsg(e.message || '发送验证码失败')
     })
   }
 })

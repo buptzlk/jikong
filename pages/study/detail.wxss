@@ -1,4 +1,6 @@
 /* pages/study/detail.wxss */
+@import "/component/wxParse/wxParse.wxss";
+
 page {
   background: #fff;
 }

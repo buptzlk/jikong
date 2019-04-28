@@ -2,6 +2,7 @@
 const app = getApp()
 const Study = require('../../service/study.js')
 const {showErrMsg} = require('../../utils/util.js')
+var WxParse = require('../../component/wxParse/wxParse.js');
 
 Page({
 
@@ -26,9 +27,13 @@ Page({
       this.setData({
         newsInfo: data
       })
+      var that = this;
+      let article = this.data.newsInfo.content || '';
+      WxParse.wxParse('article', 'html', article, that, 0);
+
     }).catch((e) => {
       showErrMsg(e.message || '获取详情失败')
-    })
+    })    
   },
 
   /**

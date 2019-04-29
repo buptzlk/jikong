@@ -82,7 +82,7 @@ Page({
       task_id: this.options.taskId
     }).then((data) => {
       let resultContent = ''
-      if (data.isCorrenct) {
+      if (data.isCorrect) {
         resultContent = '恭喜您答对了！'
       } else {
         resultContent = `答错了，正确答案为${data.correctAnswer}。`

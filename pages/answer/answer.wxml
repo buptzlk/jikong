@@ -5,7 +5,7 @@
       <view class="weui-badge weui-badge-blue" bindtap="showFeedbackModal">我要反馈</view>
     </view>
     <view class="question-desc">{{question.title}}</view>
-    <view wx:if="{{question.type == 0}}">
+    <view wx:if="{{question.type == 0 || question.type == 2}}">
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio choice" wx:for="{{question.options}}" wx:key="index">
           <radio value="{{index}}" checked="{{item.checked}}" /> {{item}}

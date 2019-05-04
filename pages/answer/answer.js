@@ -24,6 +24,7 @@ Page({
     }
     request(params).then(data => {
       this.setData({
+        answer: '[]',
         question: data
       })
     }).catch(e => {

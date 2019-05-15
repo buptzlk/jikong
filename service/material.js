@@ -38,7 +38,7 @@ const getBorrowList = function({
 const getAdminList = function() {
   return Http.post(domain + 'route/adminList', {
     open_id: app.globalData.openid,
-    route: 'admin/goods/approve'
+    route: '/api/admin/borrow/update'
   })
 }
 

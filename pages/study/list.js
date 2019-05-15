@@ -16,6 +16,7 @@ Page({
     page_size: 10,
     hasNextPage: 1,
     task_id: null,
+    task_type: null,
   },
   getList: function() {
     if (this.data.hasNextPage != 1 || this.loading) {
@@ -32,8 +33,9 @@ Page({
       params.task_id = this.data.task_id
     }
     request(params).then((data) => {
+      let list = this.data.index == 1 ? [] : this.data.list
       this.setData({
-        list: this.data.list.concat(data.newsInfo),
+        list: list.concat(data.newsInfo),
         index: data.page.index,
         hasNextPage: data.page.hasNextPage
       })
@@ -41,6 +43,10 @@ Page({
       showErrMsg(e.message || '获取学习资料失败')
     }).then(() => {
       this.loading = false;
+      if (this.isPullDownRefresh) {
+        this.isPullDownRefresh = false;
+        wx.stopPullDownRefresh()
+      }
     })
   },
   naviDetail(e) {
@@ -49,6 +55,9 @@ Page({
     if (this.data.task_id) {
       url += `&taskId=${this.data.task_id}`
     }
+    if (this.data.task_type) {
+      url += `&taskType=${this.data.task_type}`
+    }
     wx.navigateTo({
       url,
     })
@@ -56,7 +65,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {  
+  onLoad: function() {
+    if (app.globalData.task_id) {
+      this.getData()
+    } else {
+      this.getList()
+    }
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -64,20 +78,63 @@ Page({
   onReachBottom: function() {
     this.getList()
   },
-
-  onShow: function() {
+  onPullDownRefresh() {
+    console.log('pull down')
     this.setData({
-      list: [],
       index: 1,
       hasNextPage: 1,
-      task_id: null
     })
+    this.isPullDownRefresh = true
+    this.getList()
+  },
+
+  onShow: function() {
+    this.getData()
+  },
+
+  getData() {
     if (app.globalData.task_id) {
       this.setData({
         task_id: app.globalData.task_id
       })
     }
-    this.getList()
+    if (app.globalData.task_type) {
+      let type = app.globalData.task_type
+      this.setData({
+        task_type: type
+      })
+      if (type == 'week') {
+        wx.setNavigationBarTitle({
+          title: '周任务卡',
+        })
+      } else if (type == 'month') {
+        wx.setNavigationBarTitle({
+          title: '月任务卡',
+        })
+      } else if (type == 'year') {
+        wx.setNavigationBarTitle({
+          title: '年任务卡',
+        })
+      }
+      this.setData({
+        index: 1,
+        hasNextPage: 1,
+      })
+      this.getList()
+    } else {
+      wx.setNavigationBarTitle({
+        title: '学习',
+      })
+      if (this.data.task_id) {
+        this.setData({
+          index: 1,
+          hasNextPage: 1,
+          task_id: null,
+          task_type: null
+        })
+        this.getList()
+      }
+    }
   },
 
   /**
@@ -85,5 +142,6 @@ Page({
    */
   onHide: function() {
     app.globalData.task_id = null;
+    app.globalData.task_type = null;
   }
 })

@@ -13,5 +13,5 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{hasNextPage !== 1 && list.length == 0}}" class='well'>暂无学习资料~</view>
+  <view wx:if="{{hasNextPage !== 1 && list.length == 0}}" class='well'>{{task_type ? '任务卡已完成～' : '暂无学习资料~'}}</view>
 </view>

@@ -32,6 +32,9 @@ Page({
   showDetail(e) {
     console.log(e)
     let type = e.currentTarget.dataset.type
+    this.setData({
+      currentType: type
+    })
     let task = null;
     let modalTitle = ''
     if (type === 'week') {
@@ -69,10 +72,11 @@ Page({
       this.easyModal.hide();
       if (modal.task.template === 'question') {
         wx.navigateTo({
-          url: `/pages/answer/answer?taskId=${modal.task.task_id}`,
+          url: `/pages/answer/answer?taskId=${modal.task.task_id}&type=${this.data.currentType}`,
         })
       } else if (modal.task.template === 'news') {
         app.globalData.task_id = modal.task.task_id
+        app.globalData.task_type = this.data.currentType
         wx.switchTab({
           url: `/pages/study/list`,
         })

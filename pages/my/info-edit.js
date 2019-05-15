@@ -68,7 +68,7 @@ Page({
     User.updateUser({
       department_id: departments[departmentIndex].id
     }).catch((e) => {
-      showErrMsg(e.message || '设置科室失败')
+      showErrMsg(e.message || '设置队伍类别失败')
     })
   },
   naviAvatar() {
@@ -111,7 +111,7 @@ Page({
         departmentIndex
       })
     })).catch((e) => {
-      showErrMsg(e.message || '获取科室失败')
+      showErrMsg(e.message || '获取队伍类别失败')
     })
     this.setData({
       'politicalIndex': this.data.politicals.findIndex(function(item) {

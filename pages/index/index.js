@@ -64,9 +64,9 @@ Page({
     })
   },
   onLoad: function () {
+    this.getHomeData();
   },
   onShow: function() {
-    this.getHomeData();
     this.getUserData();
   }
 })

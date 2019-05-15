@@ -55,6 +55,12 @@ Page({
       return;
     }
     this.loading = true;
+    this.setData({
+      loading: true
+    })
+    wx.showLoading({
+      title: '',
+    })
     Material.getBorrowList({
       index: this.data.index,
       page_size: this.data.page_size,
@@ -78,6 +84,10 @@ Page({
       })
     }).then(() => {
       this.loading = false;
+      this.setData({
+        loading: false
+      })
+      wx.hideLoading()
     })
   },
   getAdminList: function() {

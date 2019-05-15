@@ -8,11 +8,33 @@ Page({
     answer: '[]',
     feedContent: '',
     resultContent: '',
+    loading: true,
   },
-  onLoad: function() {
+  onLoad: function(options) {
     this.getQuestion()
+    console.log(options)
+
+    if (options.type === 'month') {
+      wx.setNavigationBarTitle({
+        title: '月任务卡',
+      })
+    } else if (options.type === 'week') {
+      wx.setNavigationBarTitle({
+        title: '周任务卡',
+      })
+    } else if (options.type === 'year') {
+      wx.setNavigationBarTitle({
+        title: '年任务卡',
+      }) 
+    }
   },
   getQuestion: function() {
+    this.setData({
+      loading: true
+    })
+    wx.showLoading({
+      title: '',
+    })
     let request = Question.get
     let params;
     if (this.options.taskId) {
@@ -25,8 +47,10 @@ Page({
     request(params).then(data => {
       this.setData({
         answer: '[]',
-        question: data
+        question: data,
+        loading: false
       })
+      wx.hideLoading()
     }).catch(e => {
       showErrMsg(e.message || '获取题目失败')
     })

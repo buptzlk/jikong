@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "学习",
-  "usingComponents": {}
+  "usingComponents": {},
+  "enablePullDownRefresh": true
 }

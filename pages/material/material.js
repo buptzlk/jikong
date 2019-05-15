@@ -140,8 +140,9 @@ Page({
       page_size: this.data.page_size,
       word: this.data.inputVal
     }).then((data) => {
+      let list = this.data.index == 1 ? [] : this.data.list
       this.setData({
-        list: this.data.list.concat(data.goodsInfo),
+        list: list.concat(data.goodsInfo),
         index: data.page.index,
         hasNextPage: data.page.hasNextPage
       })
@@ -153,6 +154,10 @@ Page({
       })
     }).then(() => {
       this.loading = false;
+      if (this.isPullDownRefresh) {
+        this.isPullDownRefresh = false;
+        wx.stopPullDownRefresh()
+      }
     })
   },
   /**
@@ -178,13 +183,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.setData({
-      index: 1,
-      hasNextPage: 1,
-      list: [],
-      selectedList: []
-    })
-    this.getList();
+    console.log('show')
   },
 
   /**
@@ -200,11 +199,15 @@ Page({
   onUnload: function() {
 
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.setData({
+      index: 1,
+      hasNextPage: 1,
+    })
+    this.isPullDownRefresh = true
+    this.getList()
   }
 })

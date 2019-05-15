@@ -17,7 +17,7 @@
         </view>
         <view class="weui-media-box-rt">
           <text>状态：{{item.status}}</text>
-          <picker bindchange="bindPickerChange" value="{{index}}" range="{{adminList}}" range-key='name' data-id="{{item.id}}">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{adminList}}" range-key='name' data-id="{{item.id}}" wx:if="{{item.status == '待审批'}}">
             <view class="picker">
               <button type="primary" size="mini">催办</button>
             </view>
@@ -26,5 +26,5 @@
       </view>
     </view>
   </view>
-  <view class='well' wx:if="{{list.length == 0}}">暂无符合条件的物资~</view>
+  <view class='well' wx:if="{{list.length == 0 && loading == false}}">暂无符合条件的物资~</view>
 </view>

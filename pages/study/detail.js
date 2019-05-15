@@ -28,6 +28,10 @@ Page({
         newsInfo: data
       })
       var that = this;
+      let title = data.title.length <= 10 ? data.title : data.title.slice(0, 10) + '...'
+      wx.setNavigationBarTitle({
+        title: title,
+      })
       let article = this.data.newsInfo.content || '';
       WxParse.wxParse('article', 'html', article, that, 0);
 
@@ -49,6 +53,9 @@ Page({
   onShow: function () {
     if (this.options.taskId) {
       app.globalData.task_id = +this.options.taskId
+    }
+    if (this.options.taskType) {
+      app.globalData.task_type = this.options.taskType
     }
   },
 

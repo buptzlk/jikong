@@ -2,5 +2,6 @@
   "navigationBarTitleText": "物资",
   "usingComponents": {
     "input-number": "/pages/common/inputNumber"
-  }
+  },
+  "enablePullDownRefresh": true
 }

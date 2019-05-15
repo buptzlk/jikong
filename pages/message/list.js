@@ -11,32 +11,38 @@ Page({
     index: 1,
     page_size: 20,
     hasNextPage: 1,
-    list: []
+    list: [],
+    modal: {
+      content: ''
+    }
   },
 
   showModal: function(e) {
     let index = e.currentTarget.dataset.index
     let self = this;
-    wx.showModal({
-      content: this.data.list[index].content,
-      showCancel: false,
-      success: function(res) {
-        if (res.confirm) {
-          if (self.data.list[index].status == 1) {
-            return;
-          }
-          let key = `list[${index}].status`;
-          self.setData({
-            [key] : 1,
-          })
-          Notice.readNotice({
-            notice_id: self.data.list[index].id
-          }).catch((e) => {
-            showErrMsg(e.message || '标记消息已读失败')
-          })
-        }
-      }
-    });
+    this.setData({
+      'currentMsgIndex': index,
+      'modal.content': this.data.list[index].content
+    })
+    this.msgModal.show();
+  },
+  confirmMsg() {
+    let index = this.data.currentMsgIndex
+    if (this.data.list[index].status == 1) {
+      this.msgModal.hide()
+      return;
+    }
+    let key = `list[${index}].status`;
+    this.setData({
+      [key]: 1,
+    })
+    Notice.readNotice({
+      notice_id: this.data.list[index].id
+    }).catch((e) => {
+      showErrMsg(e.message || '标记消息已读失败')
+    }).then(() => {
+      this.msgModal.hide()
+    })
   },
 
   getList: function() {
@@ -71,5 +77,8 @@ Page({
    */
   onReachBottom: function() {
     this.getList()
+  },
+  onReady() {
+    this.msgModal = this.selectComponent("#msgModal");
   }
 })

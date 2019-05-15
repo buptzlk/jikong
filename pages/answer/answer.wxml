@@ -23,7 +23,7 @@
       <button type="primary" bindtap="submit">提交</button>
     </view>
   </view>
-  <view wx:if="{{loading === false && !question}}" class="well">暂无题目～</view>
+  <view wx:if="{{loading === false && !question}}" class="well">{{type?'任务卡完成~':'暂无题目～'}}</view>
   <easy-modal id="feedModal" title="反馈" confirmText="反馈" cancelText="取消" bind:confirmEvent="feedback" bind:cancelEvent="cancelFeedback">
     <textarea placeholder="请填写反馈内容" value="{{feedContent}}" style="width: 100%;" bindinput='changeFeedContent' />
   </easy-modal>

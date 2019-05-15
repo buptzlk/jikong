@@ -9,11 +9,14 @@ Page({
     feedContent: '',
     resultContent: '',
     loading: true,
+    type: null
   },
   onLoad: function(options) {
     this.getQuestion()
     console.log(options)
-
+    this.setData({
+      type: options.type
+    })
     if (options.type === 'month') {
       wx.setNavigationBarTitle({
         title: '月任务卡',

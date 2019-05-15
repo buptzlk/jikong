@@ -13,4 +13,7 @@
     </view>
   </view>
   <view class="well" wx:if="{{list.length == 0 && hasNextPage !== 1}}">暂无消息～</view>
+  <easy-modal id="msgModal" showCancelButton="{{false}}" confirmText="确定" bind:confirmEvent="confirmMsg">
+    {{modal.content}}
+  </easy-modal>
 </view>

@@ -22,7 +22,7 @@
     "pages/task/direct"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "卫生应急先行者",
     "navigationBarTextStyle": "black"

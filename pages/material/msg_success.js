@@ -1,3 +1,5 @@
+let app = getApp()
+
 Page({
   naviProcess: function () {
     wx.redirectTo({
@@ -8,5 +10,8 @@ Page({
     wx.switchTab({
       url: '../index/index',
     })
+  },
+  onLoad() {
+    app.globalData.hasBorrowed = true
   }
 });

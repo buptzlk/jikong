@@ -1,5 +1,6 @@
 const Material = require('../../service/material.js')
 const {showErrMsg, debounce} = require('../../utils/util.js')
+const app = getApp()
 
 Page({
   /**
@@ -183,29 +184,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('show')
+    if (app.globalData.hasBorrowed) {
+      this.setData({
+        inputShowed: false,
+        inputVal: "",
+        isShowList: false,
+        index: 1,
+        hasNextPage: 1,
+        selectedList: []
+      })
+      this.getList()
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    app.globalData.hasBorrowed = false
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
     this.setData({
+      isShowList: false,
       index: 1,
       hasNextPage: 1,
+      selectedList: []
     })
     this.isPullDownRefresh = true
     this.getList()

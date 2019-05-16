@@ -42,6 +42,7 @@ const getUserInfo = function() {
     open_id: app.globalData.openid
   }).then((data) => {
     app.globalData.userInfo = Object.assign(app.globalData.userInfo, data.userInfo)
+    app.globalData.userInfo.cover_img_url = app.globalData.userInfo.cover_img_url || app.globalData.userInfo.avatarUrl
     return data;
   });
 }

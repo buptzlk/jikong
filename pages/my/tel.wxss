@@ -11,3 +11,7 @@
   margin-right: 0;
   box-sizing: border-box;
 }
+.weui-vcode-btn {
+  width: 160rpx;
+  text-align: center;
+}

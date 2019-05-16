@@ -4,12 +4,16 @@ const User = require('../../service/user.js')
 const {verifyTel} = require('../../utils/verify.js')
 const {showErrMsg} = require('../../utils/util.js')
 
+const delayTime = 60;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    timer: delayTime,
+    canSendVerify: true,
     oldTel: null,
     newTel: null,
     vcode: null,
@@ -80,6 +84,10 @@ Page({
       showErrMsg('请输入原手机号')
       return;
     }
+    this.setData({
+      canSendVerify: false
+    })
+    this.countDown();
     Tool.sendMsg({
       // captcha: this.data.imgCode,
       phone: this.data.newTel	
@@ -100,5 +108,27 @@ Page({
     }).catch((e) => {
       showErrMsg(e.message || '获取验证码失败')
     })
+  },
+  countDown: function () {
+    let self = this;
+    if (this.data.timer > 0) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(function () {
+        self.setData({
+          timer: self.data.timer - 1
+        });
+        self.countDown();
+      }, 1000);
+    } else if (!this.data.canSendVerify) {
+      this.setData({
+        timer: delayTime,
+        canSendVerify: true
+      })
+    }
+  },
+  onUnload: function() {
+    clearTimeout(this.timer)
   }
 })

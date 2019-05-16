@@ -27,7 +27,7 @@
       <input class="weui-input" type="number" maxlength='11' placeholder="请输入新手机号" bindinput='setNewTel' />
     </view>
     <view class="weui-cell__ft">
-      <view class="weui-vcode-btn" bindtap='sendVcode'>获取验证码</view>
+      <view class="weui-vcode-btn" bindtap='sendVcode'>{{canSendVerify? '发送验证码': timer + 's'}}</view>
     </view>
   </view>
   <view class="weui-cell weui-cell_input">

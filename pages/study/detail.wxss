@@ -8,9 +8,6 @@ page {
   margin: 0 auto;
   display: block;
 }
-.weui-article__p {
-  text-indent: 2em;
-}
 .weui-article__h1 {
   text-align: center;
 }
@@ -23,3 +20,6 @@ page {
 .weui-article__time text {
   margin: 20rpx;
 }
+/* .wxParse-li-text {
+  display: flex;
+} */

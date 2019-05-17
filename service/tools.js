@@ -1,5 +1,5 @@
 const Http = require('../utils/http.js')
-const domain = 'https://www.knowalker.com/api/'
+const domain = 'https://www.btcuee.com/api/'
 const app = getApp();
 
 const uploadFile = function({

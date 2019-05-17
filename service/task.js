@@ -1,5 +1,5 @@
 const Http = require('../utils/http.js')
-const domain = 'https://www.knowalker.com/api/task/'
+const domain = 'https://www.btcuee.com/api/task/'
 const app = getApp();
 
 const getTaskList = function () {

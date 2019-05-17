@@ -17,7 +17,8 @@ Page({
       this.setData({
         newsInfo: data.newsInfo,
         slideInfo: data.slideInfo,
-        noticeCount: data.noticeCount
+        noticeCount: data.noticeCount,
+        taskCount: data.taskCount
       })
       app.globalData.noticeCount = data.noticeCount
     }).catch((e) => {

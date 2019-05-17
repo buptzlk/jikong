@@ -19,7 +19,10 @@
     </view>
     <view class="flex-row-space"></view>
     <view class="flex-row-item" bindtap='naviTask'>
-      <image src="/image/task.png"></image>
+      <view style="position: relative;">
+        <image src="/image/task.png"></image>
+        <view wx:if="{{taskCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{taskCount}}</view>
+      </view>
       <text>任务卡</text>
     </view>
   </view>

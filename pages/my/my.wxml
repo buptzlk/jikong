@@ -14,7 +14,10 @@
     </view>
     <view class="flex-row card-container">
       <navigator url="/pages/task/task">
-        <image src="/image/task.png"></image>
+        <view style="position: relative;">
+          <image src="/image/task.png"></image>
+          <view wx:if="{{taskCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{taskCount}}</view>
+        </view>
         <text>任务卡</text>
       </navigator>
       <navigator url="/pages/material/process">

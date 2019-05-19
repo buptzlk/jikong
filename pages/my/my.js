@@ -11,6 +11,7 @@ Page({
   data: {
     userInfo: null,
     noticeCount: 0,
+    taskCount: 0,
     complete: ''
   },
   naviAvatar: function() {
@@ -31,6 +32,7 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo,
         noticeCount: data.noticeCount,
+        taskCount: data.taskCount,
         complete: data.complete
       })
     }).catch((e) => {

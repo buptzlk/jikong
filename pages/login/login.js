@@ -56,6 +56,7 @@ Page({
       name: e.detail.value.username,
       phone: e.detail.value.tel
     }).then(() => {
+      wx.setStorageSync('isBind', 'true')
       wx.switchTab({
         url: '../index/index',
       })

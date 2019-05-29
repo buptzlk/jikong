@@ -7,17 +7,20 @@
   position: fixed;
   top: 120rpx;
   left: 0;
-  width: 140rpx;
+  width: 240rpx;
   display: flex;
   font-size: 14px;
   flex-direction: column;
-  background: #efeff4;
+  background: #FFFFFF;
+  border-right: 1px solid #efeff4;
 }
 .cat_list view {
-  padding: 20rpx 10rpx;
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #efefef;
+  font-size: 14px;
 }
 .cat-item-active {
-  background: #fff;
+background-color: rgba(210, 210, 210, 0.2);  padding:20rpx;
 }
 .weui-search-bar {
   width: 100%;
@@ -30,7 +33,7 @@
   margin-top: 0;
 }
 .weui-panel__bd {
-  margin-left: 140rpx;
+  margin-left: 240rpx;
 }
 
 button[size=middle] {

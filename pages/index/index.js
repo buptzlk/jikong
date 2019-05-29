@@ -66,7 +66,7 @@ Page({
   },
   naviStudyWithCat: function(e) {
     wx.navigateTo({
-      url: `/pages/study/newList?cat_id=${e.currentTarget.dataset.id}`,
+      url: `/pages/study/newList?cat_id=${e.currentTarget.dataset.id}&name=${e.currentTarget.dataset.name}`,
     })
   },
   naviMessage: function() {

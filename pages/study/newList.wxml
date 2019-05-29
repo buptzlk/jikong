@@ -1,0 +1,17 @@
+<!--pages/study/list.wxml-->
+<view class='container'>
+  <view class="weui-panel__bd">
+    <view wx:for="{{list}}" wx:key="id">
+      <view bindtap="naviDetail" data-id="{{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{item.cover_img_url}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.title}}</view>
+          <view class="weui-media-box__desc">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{hasNextPage !== 1 && list.length == 0}}" class='well'>{{task_type ? '任务卡已完成～' : '暂无学习资料~'}}</view>
+</view>

@@ -27,6 +27,7 @@ const http = (method, url, data) => {
         }
       },
       fail(err) {
+        console.log(err)
         reject(err);
       }
     })

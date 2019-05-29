@@ -38,6 +38,7 @@ App({
     encryptedData: null,
     code: null,
     openid: null,
-    task_id: null
+    task_id: null,
+    URL: 'https://www.knowalker.com'
   }
 })

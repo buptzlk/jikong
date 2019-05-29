@@ -1,6 +1,8 @@
 const Http = require('../utils/http.js')
-const domain = 'https://www.btcuee.com/api/task/'
+// const domain = 'https://www.btcuee.com/api/task/'
 const app = getApp();
+const domain = app.globalData.URL + '/api/task/'
+
 
 const getTaskList = function () {
   return Http.post(domain + 'list', {

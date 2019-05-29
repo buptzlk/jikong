@@ -5,7 +5,6 @@
     "pages/answer/answer",
     "pages/answer/result",
     "pages/login/login",
-    "pages/logs/logs",
     "pages/material/material",
     "pages/material/msg_success",
     "pages/material/process",
@@ -19,7 +18,8 @@
     "pages/message/list",
     "pages/my/avatar",
     "pages/answer/wrong",
-    "pages/task/direct"
+    "pages/task/direct",
+    "pages/study/newList"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,7 +1,9 @@
 
 const Http = require('../utils/http.js')
-const domain = 'https://www.btcuee.com/api/'
+// const domain = 'https://www.btcuee.com/api/'
 const app = getApp();
+const domain = app.globalData.URL + '/api/'
+
 
 const get = function() {
   return Http.post(domain + 'question/get', {

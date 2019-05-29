@@ -8,14 +8,14 @@ const {showErrMsg} = require('../../utils/util.js')
 Page({
   data: {
     userInfo: null,
-    newsInfo: [],
+    catInfo: [],
     slideInfo: null,
     noticeCount: 0
   },
   getHomeData: function() {
     Home.getHomeInfo().then((data) => {
       this.setData({
-        newsInfo: data.newsInfo,
+        catInfo: data.catInfo,
         slideInfo: data.slideInfo,
         noticeCount: data.noticeCount,
         taskCount: data.taskCount
@@ -57,6 +57,16 @@ Page({
   naviStudy: function() {
     wx.switchTab({
       url: '/pages/study/list',
+    })
+  },
+  naviDetail: function(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
+  naviStudyWithCat: function(e) {
+    wx.navigateTo({
+      url: `/pages/study/newList?cat_id=${e.currentTarget.dataset.id}`,
     })
   },
   naviMessage: function() {

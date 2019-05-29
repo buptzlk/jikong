@@ -1,9 +1,13 @@
 <!--index.wxml-->
 <view class="container">
-  <navigator url="/pages/study/detail?id={{slideInfo.id}}" class="header">
-    <image class="banner" src="{{slideInfo.cover_img_url}}"></image>
-    <text class="title">{{slideInfo.title}}</text>
-  </navigator>
+  <swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" class="header">
+    <block wx:for="{{slideInfo}}">
+      <swiper-item data-url="/pages/study/detail?id={{item.id}}" bindtap="naviDetail">
+        <image src="{{item.cover_img_url}}" class="banner" />
+        <text class="title">{{item.title}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl}}"></image>
   </view>
@@ -46,9 +50,9 @@
     </view>
   </view>
   <view class="resource-list flex-row">
-    <navigator url="/pages/study/detail?id={{item.id}}" class="flex-row-item" wx:for="{{newsInfo}}" wx:key="id">
+    <view data-id="{{item.id}}" data-name="{{item.name}}" class="flex-row-item" wx:for="{{catInfo}}" wx:key="id" bindtap='naviStudyWithCat'>
       <image src="{{item.cover_img_url}}"></image>
-      <view class="news-title">{{item.title}}</view>
-    </navigator>
+      <view class="news-title">{{item.name}}</view>
+    </view>
   </view>
 </view>

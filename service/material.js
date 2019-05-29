@@ -1,23 +1,25 @@
 const Http = require('../utils/http.js')
 // const domain = 'https://www.btcuee.com/api/'
 const app = getApp();
-const domain = app.globalData.URL + '/api'
+const domain = app.globalData.URL + '/api/'
 
 const getMaterialList = function({
   index,
-  page_size
+  page_size,
+  cat_id
 }) {
-  return Http.post(domain + '/page/goods', {
+  return Http.post(domain + 'page/goods', {
     open_id: app.globalData.openid,
     page_size,
-    index
+    index,
+    cat_id
   })
 }
 
 const borrow = function({
   goods
 }) {
-  return Http.post(domain + '/goods/borrow', {
+  return Http.post(domain + 'goods/borrow', {
     open_id: app.globalData.openid,
     goods
   })
@@ -28,7 +30,7 @@ const getBorrowList = function({
   page_size,
   status
 }) {
-  return Http.post(domain + '/goods/borrowList', {
+  return Http.post(domain + 'goods/borrowList', {
     open_id: app.globalData.openid,
     index,
     page_size,

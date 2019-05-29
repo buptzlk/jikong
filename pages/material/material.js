@@ -14,7 +14,9 @@ Page({
     page_size: 10,
     hasNextPage: 1,
     list: [],
-    selectedList: []
+    selectedList: [],
+    catList: [],
+    current_cat_id: null,
   },
   showInput: function() {
     this.setData({
@@ -24,13 +26,24 @@ Page({
   hideInput: function() {
     this.setData({
       inputVal: "",
-      inputShowed: false
+      inputShowed: false,
+      index: 1,
+      list: [],
+      hasNextPage: 1,
+      current_cat_id: null,
     });
+    this.getList()
   },
   clearInput: function() {
     this.setData({
-      inputVal: ""
+      inputVal: "",
+      inputShowed: false,
+      index: 1,
+      list: [],
+      hasNextPage: 1,
+      current_cat_id: null,
     });
+    this.getList()
   },
   inputTyping: function(e) {
     this.setData({
@@ -46,7 +59,8 @@ Page({
     this.setData({
       index: 1,
       list: [],
-      hasNextPage: 1
+      hasNextPage: 1,
+      current_cat_id: null,
     })
     this.getList()
   },
@@ -139,9 +153,15 @@ Page({
     getFun({
       index: this.data.index,
       page_size: this.data.page_size,
-      word: this.data.inputVal
+      word: this.data.inputVal,
+      cat_id: this.data.current_cat_id
     }).then((data) => {
       let list = this.data.index == 1 ? [] : this.data.list
+      if (this.data.catList.length == 0) {
+        this.setData({
+          catList: data.catList || []
+        })
+      }
       this.setData({
         list: list.concat(data.goodsInfo),
         index: data.page.index,
@@ -160,6 +180,18 @@ Page({
         wx.stopPullDownRefresh()
       }
     })
+  },
+  changeCat(e) {
+    this.setData({
+      inputShowed: false,
+      inputVal: "",
+      current_cat_id: e.currentTarget.dataset.id,
+      isShowList: false,
+      index: 1,
+      hasNextPage: 1,
+      selectedList: []
+    })
+    this.getList();
   },
   /**
    * 生命周期函数--监听页面加载

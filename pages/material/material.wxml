@@ -23,13 +23,15 @@
         </view>
         <view class="weui-media-box__text-box">
           <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
-          <view class="weui-media-box__desc">余量：{{item.rest_num}}</view>
-        </view>
-        <view class="weui-media-box-right">
+          <view class="weui-media-box__desc">余量：{{item.rest_num}}
           <input-number num="{{item.borrow}}" index="{{index}}" min="0" max="{{item.rest_num}}" bind:changeNumber="changeNumber"></input-number>
+          </view>
         </view>
       </view>
     </view>
+  </view>
+  <view class="cat_list">
+    <view wx:for="{{catList}}" data-id="{{item.id}}" wx:key="index" bindtap="changeCat" class="{{current_cat_id == item.id ? 'cat-item-active' : 'cat-item' }}">{{item.name}}</view>
   </view>
   <view class="fixed-bottom-bar" bindtap='toggleBorrowedList'>
     <view class="{{selectedList.length ? 'img-box img-box-blue': 'img-box'}}">

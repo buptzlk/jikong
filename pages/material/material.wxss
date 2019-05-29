@@ -1,12 +1,36 @@
 .container {
+  padding-top: 100rpx; 
   padding-bottom: 100rpx;
   min-height: 100%; 
 }
+.cat_list {
+  position: fixed;
+  top: 120rpx;
+  left: 0;
+  width: 140rpx;
+  display: flex;
+  font-size: 14px;
+  flex-direction: column;
+  background: #efeff4;
+}
+.cat_list view {
+  padding: 20rpx 10rpx;
+}
+.cat-item-active {
+  background: #fff;
+}
 .weui-search-bar {
   width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 .weui-panel {
   margin-top: 0;
+}
+.weui-panel__bd {
+  margin-left: 140rpx;
 }
 
 button[size=middle] {
@@ -22,8 +46,8 @@ button[size=middle] {
 }
 
 .weui-media-box__image image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 130rpx;
+  height: 130rpx;
   display: block;
 }
 
@@ -146,4 +170,17 @@ button[size=middle] {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 200rpx;
+}
+
+.weui-media-box__desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weui-media-box__text-box {
+  flex: 1;
+}
+.weui-media-box__title { 
+  text-overflow: unset;
+  white-space: unset;
 }

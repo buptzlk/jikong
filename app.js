@@ -39,6 +39,6 @@ App({
     code: null,
     openid: null,
     task_id: null,
-    URL: 'https://www.knowalker.com'
+    URL: 'https://www.btcuee.com'
   }
 })

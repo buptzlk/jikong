@@ -4,6 +4,11 @@
 page {
   background: #fff;
 }
+
+.weui-article__p {
+  line-height: 2em;
+  text-indent: 2em;
+}
 .weui-article__p .weui-article__img {
   margin: 0 auto;
   display: block;

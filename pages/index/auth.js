@@ -8,11 +8,24 @@ Page({
       avatarUrl: '/image/avatar.png'
     },
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    progress: 0,
+    timer: "",
+    isShowAuthBtn: false
   },
   onReady() {
   },
   onLoad() {
+    let index = 0;
+    this.data.timer = setInterval(() => { //注意箭头函数！！
+      index += 1;
+      this.setData({
+        progress: index
+      })
+      if (index == 100) {
+        clearInterval(this.data.timer);
+      }
+    }, 10);
     let openid = wx.getStorageSync('openid')
     let isBind = wx.getStorageSync('isBind')
     let p1 = this.getCode()

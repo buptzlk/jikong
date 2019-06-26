@@ -16,7 +16,7 @@ Page({
     page_size: 10,
     hasNextPage: 1,
     task_id: null,
-    task_type: null,
+    task_type: null
   },
   getList: function () {
     if (this.data.hasNextPage != 1 || this.loading) {

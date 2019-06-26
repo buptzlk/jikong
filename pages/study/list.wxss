@@ -8,4 +8,47 @@
 }
 .weui-panel__bd {
   width: 100%;
+  margin-top: 40px;
+}
+
+/**index.wxss**/
+page{
+    width: 100%;
+    height: 100%;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    background-color:#FFFFFF;
+}
+.nav {
+    height: 80rpx;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 80rpx;
+    background: #f7f7f7;
+    font-size: 14px;
+    white-space: nowrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.nav-item {
+    padding:0px 5px;
+    display: inline-block;
+    text-align: center;
+}
+.nav-item.active{
+    color:#CC3333;
+}
+.tab-box{
+    background: greenyellow;
+    padding-top: 80rpx;
+    height: 100%;
+    box-sizing: border-box;
+}
+.tab-content{
+    overflow-y: scroll;
 }

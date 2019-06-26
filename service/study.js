@@ -19,6 +19,15 @@ const getStudyList = function({
   })
 }
 
+const getNavList = function ({
+
+}) {
+  return Http.post(domain + 'cat/list', {
+    open_id: app.globalData.openid,
+  })
+}
+
+
 const getDetail = function({
   id,
   task_id
@@ -32,5 +41,6 @@ const getDetail = function({
 
 module.exports = {
   getStudyList,
-  getDetail
+  getDetail,
+  getNavList
 }

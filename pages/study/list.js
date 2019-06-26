@@ -17,6 +17,13 @@ Page({
     hasNextPage: 1,
     task_id: null,
     task_type: null,
+    cat_id: null,
+    navData: [
+      { "id": 0,"name": "全部"}
+    ],
+    hiddenNav: null,
+    currentTab: 0,
+    navScrollLeft: 0
   },
   getList: function() {
     if (this.data.hasNextPage != 1 || this.loading) {
@@ -32,6 +39,11 @@ Page({
       request = Task.get
       params.task_id = this.data.task_id
     }
+
+    if (this.data.cat_id) {
+      params.cat_id = this.data.cat_id
+    }
+
     request(params).then((data) => {
       let list = this.data.index == 1 ? [] : this.data.list
       this.setData({
@@ -47,6 +59,19 @@ Page({
         this.isPullDownRefresh = false;
         wx.stopPullDownRefresh()
       }
+    })
+  },
+  getNav: function () {
+    let request = Study.getNavList
+    let params = {}
+    request(params).then((data) => {
+      this.setData({
+        navData: this.data.navData.concat(data),
+      })
+    }).catch((e) => {
+      showErrMsg(e.message || '获取文章分类失败')
+    }).then(() => {
+      
     })
   },
   naviDetail(e) {
@@ -66,11 +91,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function() {
+    this.getNav()
     if (app.globalData.task_id) {
       this.getData()
     } else {
       this.getList()
     }
+  },
+  switchNav(event) {
+    var cur = event.currentTarget.dataset.current;
+    var id = event.currentTarget.dataset.id;
+
+    //每个tab选项宽度占1/5
+    var singleNavWidth = this.data.windowWidth / 5;
+    //tab选项居中                            
+    this.setData({
+      navScrollLeft: (cur - 2) * singleNavWidth
+    })
+    if (this.data.currentTab == cur) {
+      return false;
+    } else {
+      this.setData({
+        currentTab: cur,
+        cat_id: id,
+        index: 1
+      })
+    }
+    this.getList()
+
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -89,6 +137,11 @@ Page({
   },
 
   onShow: function() {
+    if (this.data.hiddenNav) {
+      this.setData({
+        hiddenNav: null
+      })
+    }
     this.getData()
   },
 
@@ -104,6 +157,9 @@ Page({
         task_type: type
       })
       if (type == 'week') {
+        this.setData({
+          hiddenNav: 'none'
+        })
         wx.setNavigationBarTitle({
           title: '周任务卡',
         })

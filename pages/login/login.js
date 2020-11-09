@@ -105,5 +105,31 @@ Page({
         canSendVerify: true
       })
     }
-  }
+  },
+  getPhoneNumber: function (e) {
+    var that = this;
+    console.log(e.detail.errMsg == "getPhoneNumber:ok");
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.login({
+        success: res => {
+          if(res.code){
+              console.log(res.code)
+              wx.request({
+                url: 'https://btcuee.com/api/getWeixinphoneNum',
+                data: {
+                  encryptedData: e.detail.encryptedData,
+                  iv: e.detail.iv,
+                  code: res.code,
+                },
+                method: "post",
+                success: function (res) {
+                  console.log(res);
+                }
+              })
+            }
+          }
+      })
+    }
+  },
+  
 })

@@ -6,18 +6,19 @@
     </view>
     <view class="we-input-item">
       <image class="icon" src="/image/tel.png"></image>
-      <input class="weui-input" type="number" name="tel" maxlength="11" placeholder-class="phcolor" placeholder="请输入手机号码" bindinput="setTel" />
+      <input class="weui-input" type="number" name="tel" maxlength="11" placeholder-class="phcolor" placeholder="请输入手机号码"  bindinput="setTel"  />
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
     </view>
     <!-- <view class="we-input-item">
       <image class="icon" src="/image/tel.png"></image>
       <input class="weui-input" type="number" name="captcha"  placeholder-class="phcolor" placeholder="请输入图形验证码" bindinput="setCaptcha" />
       <image class="weui-vcode-img" src="{{captchaUrl}}" style="width: 108px"></image>
     </view> -->
-    <view class="we-input-item">
+    <!-- <view class="we-input-item">
       <image class="icon" src="/image/verify.png"></image>
       <input class="weui-input" type="number" name="verifyCode" placeholder-class="phcolor" placeholder="请输入验证码" />
       <button class="weui-btn mini-btn warn-btn" type="default" size="mini" bindtap='sendVerifyCode'>{{canSendVerify? '发送验证码': timer + 's'}}</button>
-    </view>
+    </view> -->
     <view class="btn-area">
       <button formType="submit">登录校验</button>
     </view>

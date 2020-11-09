@@ -16,6 +16,15 @@ const getMaterialList = function({
   })
 }
 
+const getMaterialInfo= function({
+  goods_id
+}) {
+  return Http.post(domain + 'goods/show', {
+    open_id: app.globalData.openid,
+    goods_id,
+  })
+}
+
 const borrow = function({
   goods
 }) {
@@ -71,5 +80,6 @@ module.exports = {
   getBorrowList,
   getAdminList,
   remind,
-  search
+  search,
+  getMaterialInfo,
 }

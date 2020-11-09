@@ -1,15 +1,9 @@
-const Material = require('../../service/material.js')
+const User = require('../../service/user.js')
+const {showErrMsg} = require('../../utils/util.js')
 
-const {showErrMsg, debounce} = require('../../utils/util.js')
 const app = getApp()
 
 Page({
-  naviMaterialInfo: function() {
-    console.log('info')
-    wx.navigateTo({
-      url: '/pages/material/info',
-    })
-  },
   /**
    * 页面的初始数据
    */
@@ -24,6 +18,7 @@ Page({
     selectedList: [],
     catList: [],
     current_cat_id: null,
+    goods_id: '',
   },
   showInput: function() {
     this.setData({
@@ -153,17 +148,14 @@ Page({
       return;
     }
     this.loading = true;
-    let getFun = Material.getMaterialList;
+    let getFun = Material.getMaterialInfo;
     if (this.data.inputVal) {
       getFun = Material.search
     }
     getFun({
-      index: this.data.index,
-      page_size: this.data.page_size,
-      word: this.data.inputVal,
-      cat_id: this.data.current_cat_id
+      goods_id: this.data.goods_id,
     }).then((data) => {
-      let list = this.data.index == 1 ? [] : this.data.list
+      let list = this.data.list
       if (this.data.catList.length == 0) {
         this.setData({
           catList: data.catList || []
@@ -203,7 +195,23 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function(options) {
+    this.getCode()
+    this.getUserInfo()
+    this.login()
+    if(options.q) {
+      let codeStr = decodeURIComponent(options.q)
+      console.log(codeStr)
+      let dataAry = codeStr.split("=")
+      if(dataAry.length > 1) {
+        this.setData(
+          {
+            goods_id: dataAry[1]
+          }
+        )
+      }
+    }
+    // let codeStr = decodeURIComponent(options.q)
     this.getList();
   },
   /**

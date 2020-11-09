@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "物资详情",
+  "usingComponents": {
+    "input-number": "/pages/common/inputNumber"
+  },
+  "enablePullDownRefresh": true
+}

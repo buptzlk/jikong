@@ -50,3 +50,13 @@ form{
   border: none;
   font-size: 28rpx;
 }
+
+.we-input-item button {
+  background-color: #009900;
+  color: white;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

@@ -26,6 +26,18 @@ const login = function({
   });
 }
 
+const myLogin = function({
+  code,
+  iv,
+  encryptedData
+}) {
+  return Http.post(domain + 'myLogin', {
+    code,
+    iv,
+    encryptedData
+  });
+}
+
 const register = function({
   name,
   phone,
@@ -90,6 +102,19 @@ const getDepartments = function() {
   });
 }
 
+const getPhoneNo = function({
+  code,
+  iv,
+  encryptedData
+}) {
+  return Http.post(domain + 'getWeixinphoneNum', {
+    code,
+    iv,
+    encryptedData
+  });
+}
+
+
 module.exports = {
   login,
   register,
@@ -97,5 +122,7 @@ module.exports = {
   changePhone,
   updateUser,
   getCompanys,
-  getDepartments
+  getDepartments,
+  myLogin,
+  getPhoneNo,
 }

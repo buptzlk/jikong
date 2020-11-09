@@ -33,5 +33,13 @@ image {
   height:100%;
   display:block;
 }
+.files {
+  background-color: #dddddd;
+  padding: 10px;
+  border-radius: 10px;
+}
+button {
+  margin-top: 10px;
+}
 
 

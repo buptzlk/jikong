@@ -22,7 +22,7 @@ Page({
       })
       app.globalData.noticeCount = data.noticeCount
     }).catch((e) => {
-      showErrMsg(e.message || '获取首页信息失败')
+      // showErrMsg(e.message || '获取首页信息失败')
     })
   },
   getUserData: function() {
@@ -31,7 +31,7 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }).catch((e) => {
-      showErrMsg(e.message || '获取用户信息失败')
+      // showErrMsg(e.message || '获取用户信息失败')
     })
   },
   naviAnswer: function() {

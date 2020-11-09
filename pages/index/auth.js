@@ -10,8 +10,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     progress: 0,
-    timer: "",
-    isShowAuthBtn: false
+    timer: ""
   },
   onReady() {
   },
@@ -26,26 +25,9 @@ Page({
         clearInterval(this.data.timer);
       }
     }, 10);
-    let openid = wx.getStorageSync('openid')
-    let isBind = wx.getStorageSync('isBind')
-    let p1 = this.getCode()
-    let p2 = this.getUserInfo()
-    let p = Promise.all([p1, p2])
-    app.globalData.openid = openid
-    p.then(() => {
-      if (openid && isBind) {
-        wx.switchTab({
-          url: 'index',
-        })
-      } else if (openid) {
-        wx.redirectTo({
-          url: '../login/login',
-        })
-      } else {
-        this.login();
-      }
-    }, () => {
-
+    this.getCode()
+    wx.switchTab({
+      url: 'index',
     })
   },
   getCode() {
@@ -69,6 +51,9 @@ Page({
         success: res => {
           if (res.authSetting['scope.userInfo']) {
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+            this.setData({
+              hasUserInfo: true
+            })
             wx.getUserInfo({
               success: res => {
                 // 可以将 res 发送给后台解码出 unionId

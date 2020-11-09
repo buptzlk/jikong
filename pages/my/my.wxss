@@ -12,6 +12,15 @@
   align-items: center;
   padding: 1em;
 }
+.weui-cell button {
+  background-color: #009900;
+  color: white;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .wave {
   height:100rpx;
   background:#57bead;

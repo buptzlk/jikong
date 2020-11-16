@@ -4,10 +4,11 @@ const {showErrMsg, debounce} = require('../../utils/util.js')
 const app = getApp()
 
 Page({
-  naviMaterialInfo: function() {
+  naviMaterialInfo: function(e) {
+    let dataId = e.currentTarget.dataset.id;
     console.log('info')
     wx.navigateTo({
-      url: '/pages/material/info',
+      url: '/pages/material/info?id=' + dataId,
     })
   },
   /**

@@ -52,21 +52,25 @@
   background: #fff;
 }
 .resource-list {
-  flex: 1;
+  display: flex;
   background: #fff;
   padding-top: 20rpx;
   justify-content: space-evenly; 
 }
 .resource-list .flex-row-item {
   text-align: center;
+  flex: 1;
+}
+.resource-list .flex-row-item .news-img {
+  width: 100%;
+  height: 200rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .resource-list .flex-row-item image {
   display: block;
-  width: 330rpx;
-  height: 236rpx;
-}
-.resource-list .news-title {
-  width: 330rpx;
+  width: 100%;
 }
 .userinfo {
   position: absolute;

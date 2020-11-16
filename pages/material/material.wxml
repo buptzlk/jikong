@@ -18,7 +18,7 @@
   </view>
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text" wx:for="{{list}}" wx:key="{{index}}">
+      <view class="weui-media-box weui-media-box_text" data-id="{{ item.id }}" wx:for="{{list}}" wx:key="{{index}}" bindtap="naviMaterialInfo">
         <view class="weui-media-box__image">
           <image src="{{item.cover_img_url}}"></image>
         </view>

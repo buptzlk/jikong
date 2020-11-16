@@ -183,3 +183,15 @@ button[size=middle] {
   text-overflow: unset;
   white-space: unset;
 }
+.phone-btn {
+  margin-top: 20rpx;
+}
+.material-detail {
+  font-size: 28rpx;
+  padding: 20rpx;
+  line-height: 40rpx;
+  border-top: 1rpx solid #e7e7e7;
+}
+.material-detail-info {
+  margin-bottom: 10rpx;
+}

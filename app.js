@@ -37,8 +37,8 @@ App({
     iv: null,
     encryptedData: null,
     code: null,
-    openid: null,
+    openid: wx.getStorageSync('openid'),
     task_id: null,
-    URL: 'https://www.btcuee.com'
+    URL: 'http://www.btcuee.com'
   }
 })

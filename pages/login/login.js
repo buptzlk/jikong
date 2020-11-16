@@ -115,7 +115,7 @@ Page({
           if(res.code){
               console.log(res.code)
               wx.request({
-                url: 'https://btcuee.com/api/getWeixinphoneNum',
+                url: 'http://btcuee.com/api/getWeixinphoneNum',
                 data: {
                   encryptedData: e.detail.encryptedData,
                   iv: e.detail.iv,

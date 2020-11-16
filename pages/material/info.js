@@ -1,3 +1,5 @@
+
+const Material = require('../../service/material.js')
 const User = require('../../service/user.js')
 const {showErrMsg} = require('../../utils/util.js')
 
@@ -19,54 +21,11 @@ Page({
     catList: [],
     current_cat_id: null,
     goods_id: '',
+    borrow: 0,
+    dataId: null,
+    open_id: '',
+    materialInfo: {}
   },
-  showInput: function() {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function() {
-    this.setData({
-      inputVal: "",
-      inputShowed: false,
-      index: 1,
-      list: [],
-      hasNextPage: 1,
-      current_cat_id: null,
-    });
-    this.getList()
-  },
-  clearInput: function() {
-    this.setData({
-      inputVal: "",
-      inputShowed: false,
-      index: 1,
-      list: [],
-      hasNextPage: 1,
-      current_cat_id: null,
-    });
-    this.getList()
-  },
-  inputTyping: function(e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-    if (!this.debounceSearch) {
-      this.debounceSearch = debounce(this.search)
-    }
-    this.debounceSearch()
-  },
-
-  search: function() {
-    this.setData({
-      index: 1,
-      list: [],
-      hasNextPage: 1,
-      current_cat_id: null,
-    })
-    this.getList()
-  },
-
   toggleBorrowedList: function() {
     if (!this.data.selectedList.length) {
       return;
@@ -82,7 +41,7 @@ Page({
     let goods = this.data.selectedList.map((item) => {
       return {
         goods_id: item.id,
-        borrow_num: item.borrow
+        borrow_num: borrow
       }
     })
     Material.borrow({goods}).then(() => {
@@ -96,25 +55,26 @@ Page({
   changeNumber: function(e) {
     let index = e.detail.index;
     let type = e.detail.type;
-    let key = `list[${index}].borrow`;
-    let val = this.data.list[index].borrow || 0;
+    let val = this.data.borrow || 0;
     if (type == 1) {
       this.setData({
-        [key]: val + 1
+        borrow: val + 1
       });
     } else {
       this.setData({
-        [key]: val - 1
+        borrow: val - 1
       });
     }
+    let selectedList = [];
+    selectedList.push(this.data.materialInfo)
     this.setData({
-      selectedList: this.data.list.map((item, index) => {
-        item.index = index
-        return item
-      }).filter((item) => {
-        return item.borrow > 0;
-      })
+      selectedList: selectedList
     })
+    if (this.data.borrow === 0) {
+      this.setData({
+        selectedList: []
+      })
+    }
     if (this.data.selectedList.length == 0 && this.data.isShowList) {
         this.setData({
           isShowList: false,
@@ -144,41 +104,45 @@ Page({
     }
   },
   getList: function() {
-    if (this.data.hasNextPage != 1 || this.loading) {
-      return;
-    }
-    this.loading = true;
-    let getFun = Material.getMaterialInfo;
-    if (this.data.inputVal) {
-      getFun = Material.search
-    }
-    getFun({
-      goods_id: this.data.goods_id,
+  },
+  getInfo: function() {
+    Material.getInfo({
+      id: +this.data.dataId,
     }).then((data) => {
-      let list = this.data.list
-      if (this.data.catList.length == 0) {
-        this.setData({
-          catList: data.catList || []
-        })
-      }
+      console.log(data)
       this.setData({
-        list: list.concat(data.goodsInfo),
-        index: data.page.index,
-        hasNextPage: data.page.hasNextPage
+        materialInfo: data
       })
     }).catch((e) => {
-      console.log(e);
       wx.showToast({
         icon: 'none',
         title: '获取物资信息失败'
       })
-    }).then(() => {
-      this.loading = false;
-      if (this.isPullDownRefresh) {
-        this.isPullDownRefresh = false;
-        wx.stopPullDownRefresh()
-      }
-    })
+    });
+  },
+  getPhoneNumber: function (e) {
+    var that = this;
+    console.log(e.detail.errMsg == "getPhoneNumber:ok");
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.login({
+        success: res => {
+          if(res.code) {
+            User.getPhoneNo({
+              code: res.code,
+              iv: e.detail.iv,
+              encryptedData: e.detail.encryptedData
+            }).then((res) => {
+              wx.setStorageSync('openid', res.openid)
+              app.globalData.openid = res.openid
+              that.setData({
+                open_id: res.openid
+              });
+              that.getInfo();
+            })
+          }
+        }
+      })
+    }
   },
   changeCat(e) {
     this.setData({
@@ -196,37 +160,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getCode()
-    this.getUserInfo()
-    this.login()
-    if(options.q) {
-      let codeStr = decodeURIComponent(options.q)
-      console.log(codeStr)
-      let dataAry = codeStr.split("=")
-      if(dataAry.length > 1) {
-        this.setData(
-          {
-            goods_id: dataAry[1]
-          }
-        )
-      }
+    this.setData({
+      open_id: app.globalData.openid,
+      dataId: options.id
+    });
+    if (this.data.open_id) {
+      this.getInfo();
     }
-    // let codeStr = decodeURIComponent(options.q)
-    this.getList();
   },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    this.getList()
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -240,7 +181,7 @@ Page({
         hasNextPage: 1,
         selectedList: []
       })
-      this.getList()
+      // this.getList()
     }
   },
 
@@ -255,19 +196,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    this.setData({
-      isShowList: false,
-      index: 1,
-      hasNextPage: 1,
-      selectedList: []
-    })
-    this.isPullDownRefresh = true
-    this.getList()
   },
   getCode() {
     return new Promise((resolve, reject) => {

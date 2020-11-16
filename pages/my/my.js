@@ -13,7 +13,7 @@ Page({
     noticeCount: 0,
     taskCount: 0,
     complete: '',
-    open_id: '',
+    open_id: wx.getStorageSync('openid'),
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
@@ -29,16 +29,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      open_id: app.globalData.openid,
-    })
-    this.getUserInfo()
+    
   },
 
   getUserInfo: function() {
     let that = this
     wx.request({
-      url: 'https://btcuee.com/api/page/my',
+      url: 'http://www.btcuee.com/api/page/my',
       data: {
         open_id: app.globalData.openid,
       },
@@ -51,7 +48,7 @@ Page({
           taskCount: res.data.data.taskCount,
           complete: res.data.data.complete
         })
-        that.onShow()
+        // that.onShow()
         console.log(res.data.data)
       }
     })
@@ -69,6 +66,10 @@ Page({
    */
   onShow: function () {
     // this.getUserInfo();
+    this.setData({
+      open_id: app.globalData.openid,
+    })
+    this.getUserInfo()
   },
 
   /**
@@ -97,12 +98,18 @@ Page({
               iv: e.detail.iv,
               encryptedData: e.detail.encryptedData
             }).then((res) => {
+              wx.setStorageSync('openid', res.openid)
+              that.setData({
+                open_id: res.openid
+              })
+              app.globalData.openid = res.openid
               that.getUserInfo();
-        })
+            })
+          }
+        }
+      })
     }
-  }})
-  }
-},
+  },
   getCode() {
     return new Promise((resolve, reject) => {
       console.log('getCode')
@@ -175,31 +182,30 @@ Page({
     wx.login({
       success: res => {
         if(res.code) {
-           console.log(res.code)
-           app.globalData.code = res.code
-           app.globalData.iv = e.detail.iv
-           app.globalData.encryptedData = e.detail.encryptedData
-
-    User.myLogin({
-      code: res.code,
-      iv: encodeURIComponent(e.detail.iv),
-      encryptedData: encodeURIComponent(e.detail.encryptedData)
-    }).then((res) => {
-      console.log(res)
-                app.globalData.openid = res.openid
-                app.globalData.userInfo = res.userInfo
-                that.setData({
-                  open_id: res.openid,
-                  userInfo: app.globalData.userInfo,
-                  noticeCount: res.noticeCount,
-                  taskCount: res.taskCount,
-                  complete: res.complete
-                })
-                that.getUserInfo()
-    }).catch((e) => {
-
-  })
-}}
-      })
+          console.log(res.code)
+          app.globalData.code = res.code
+          app.globalData.iv = e.detail.iv
+          app.globalData.encryptedData = e.detail.encryptedData
+          User.myLogin({
+            code: res.code,
+            iv: encodeURIComponent(e.detail.iv),
+            encryptedData: encodeURIComponent(e.detail.encryptedData)
+          }).then((res) => {
+            console.log(res)
+            wx.setStorageSync('openid', res.openid)
+            app.globalData.openid = res.openid
+            app.globalData.userInfo = res.userInfo
+            that.setData({
+              open_id: res.openid,
+              userInfo: app.globalData.userInfo,
+              noticeCount: res.noticeCount,
+              taskCount: res.taskCount,
+              complete: res.complete
+            })
+            that.getUserInfo()
+          }).catch((e) => {})
+        }
+      }
+    })
   }
 })

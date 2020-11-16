@@ -1,73 +1,81 @@
 <!--pages/my/my.wxml-->
 <view class='container'>
-  <view class="userinfo">
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo" wx:if="{{!open_id}}">
-      授权登录
-    </button>
-    <image bindtap="naviAvatar" class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl || 'http://image.layadmin.cn/upload/image/20191228/WechatIMG90.png'}}" mode="cover" wx:if="{{open_id}}"></image>
-    <text class="userinfo-nickname">{{userInfo.name}}</text>
-    <text class="userinfo-company" wx:if="{{open_id}}">单位：{{userInfo.groups.name || '无'}}</text>
-  </view>
-  <view class="wave"></view>
-  <view class="jk-box">
-    <view class="flex-row user-score-info">
-      <text>经验值：{{userInfo.coin}}</text>
-      <text>级别：{{userInfo.grade}}</text>
-      <text>排名：{{userInfo.rank}}</text>
-    </view>
-    <view class="flex-row card-container">
-      <navigator url="/pages/task/task">
-        <view style="position: relative;">
-          <image src="/image/task.png"></image>
-          <view wx:if="{{taskCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{taskCount}}</view>
-        </view>
-        <text>任务卡</text>
-      </navigator>
-      <navigator url="/pages/material/process">
-        <image src="/image/material.png"></image>
-        <text>借用物资</text>
-      </navigator>
-    </view>
-  </view>
-  <view class="weui-cells">
-    <navigator url="/pages/message/list" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__hd">
-        <image src="/image/icon/msg.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-      </view>
-      <view class="weui-cell__bd">
-        <view class="weui-badge-box">
-          我的消息
-          <view class="weui-badge" wx:if="{{noticeCount > 0}}">{{noticeCount}}</view>
-        </view>
-      </view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{!userInfo.phone && open_id}}">
-      <view class="weui-cell__hd">
-        <image src="/image/icon/tel.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-      </view>
-      <view class="weui-cell__bd">手机号</view>
-      <!-- <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.phone}}</view> -->
-       <view class="weui-cell__ft weui-cell__ft_in-access">
-        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-      </view>
-    </navigator>
-    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{userInfo.phone}}">
-      <view class="weui-cell__hd">
-        <image src="/image/icon/tel.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-      </view>
-      <view class="weui-cell__bd">手机号</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.phone}}</view>
-    </navigator>
-    <navigator url="info-edit" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__hd">
-        <image src="/image/icon/info.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-      </view>
-      <view class="weui-cell__bd">个人资料
-        <text class="weui-label">{{complete}}</text>
-      </view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-  </view>
+	<view class="userinfo">
+		<view wx:if="{{open_id}}">
+			<image bindtap="naviAvatar" class="userinfo-avatar" src="{{userInfo.cover_img_url || userInfo.avatarUrl || 'http://image.layadmin.cn/upload/image/20191228/WechatIMG90.png'}}" mode="cover" wx:if="{{userInfo.cover_img_url || userInfo.avatarUrl}}"></image>
+			<view class="userinfo-avatar" bindtap="naviAvatar" wx:else>
+				<open-data type="userAvatarUrl"></open-data>
+			</view>
+			<view class="userinfo-nickname">
+				<open-data type="userNickName"></open-data>
+			</view>
+			<!-- <text class="userinfo-nickname">{{usefo.name}}</text> -->
+			<view class="userinfo-company">单位：{{userInfo.groups.name || '无'}}</view>
+		</view>
+		<button class='bottom' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else>
+			授权登录
+		</button>
+	</view>
+	<view class="wave"></view>
+	<view class="jk-box">
+		<view class="flex-row user-score-info">
+			<text>经验值：{{userInfo.coin}}</text>
+			<text>级别：{{userInfo.grade}}</text>
+			<text>排名：{{userInfo.rank}}</text>
+		</view>
+		<view class="flex-row card-container">
+			<navigator url="/pages/task/task">
+				<view style="position: relative;">
+					<image src="/image/task.png"></image>
+					<view wx:if="{{taskCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{taskCount}}</view>
+				</view>
+				<text>任务卡</text>
+			</navigator>
+			<navigator url="/pages/material/process">
+				<image src="/image/material.png"></image>
+				<text>借用物资</text>
+			</navigator>
+		</view>
+	</view>
+	<view class="weui-cells">
+		<navigator url="/pages/message/list" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+			<view class="weui-cell__hd">
+				<image src="/image/icon/msg.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+			</view>
+			<view class="weui-cell__bd">
+				<view class="weui-badge-box">
+					我的消息
+					<view class="weui-badge" wx:if="{{noticeCount > 0}}">{{noticeCount}}</view>
+				</view>
+			</view>
+			<view class="weui-cell__ft weui-cell__ft_in-access"></view>
+		</navigator>
+		<navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:if="{{!userInfo.phone && open_id}}">
+			<view class="weui-cell__hd">
+				<image src="/image/icon/tel.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+			</view>
+			<view class="weui-cell__bd">手机号</view>
+			<!-- <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.phone}}</view> -->
+			<view class="weui-cell__ft weui-cell__ft_in-access">
+				<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+			</view>
+		</navigator>
+		<navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:if="{{userInfo.phone}}">
+			<view class="weui-cell__hd">
+				<image src="/image/icon/tel.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+			</view>
+			<view class="weui-cell__bd">手机号</view>
+			<view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.phone}}</view>
+		</navigator>
+		<navigator url="info-edit" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+			<view class="weui-cell__hd">
+				<image src="/image/icon/info.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+			</view>
+			<view class="weui-cell__bd">个人资料
+				<text class="weui-label">{{complete}}</text>
+			</view>
+			<view class="weui-cell__ft weui-cell__ft_in-access"></view>
+		</navigator>
+	</view>
 
 </view>

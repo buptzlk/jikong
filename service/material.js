@@ -74,6 +74,18 @@ const search = function({
   })
 }
 
+/*
+* 获取物资详情
+*/
+const getInfo = function({
+  id
+}) {
+  return Http.post(domain + 'goods/info', {
+    open_id: app.globalData.openid,
+    id
+  })
+}
+
 module.exports = {
   getMaterialList,
   borrow,
@@ -82,4 +94,5 @@ module.exports = {
   remind,
   search,
   getMaterialInfo,
+  getInfo,
 }

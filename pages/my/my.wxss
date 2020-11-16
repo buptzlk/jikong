@@ -32,9 +32,11 @@
   height: 130rpx;
   border-radius: 50%;
   margin-bottom: 20rpx;
+  overflow: hidden;
 }
 .userinfo-company {
   font-size: 13px;
+  text-align: center;
 }
 .jk-box {
   width: 90%;
@@ -91,4 +93,9 @@
 }
 .weui-cell {
   padding: 20px;
+}
+.userinfo-nickname {
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+  text-align: center;
 }

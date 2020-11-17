@@ -41,7 +41,7 @@ Page({
     let goods = this.data.selectedList.map((item) => {
       return {
         goods_id: item.id,
-        borrow_num: borrow
+        borrow_num: this.data.borrow
       }
     })
     Material.borrow({goods}).then(() => {

@@ -21,7 +21,10 @@
     "pages/my/avatar",
     "pages/answer/wrong",
     "pages/task/direct",
-    "pages/study/newList"
+    "pages/study/newList",
+    "pages/examination/list",
+    "pages/examination/detail",
+    "pages/examination/result"
   ],
   "window": {
     "backgroundTextStyle": "dark",

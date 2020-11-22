@@ -1,6 +1,6 @@
 <base-modal id="baseModal" modalSize="{{modalSize}}" animated="{{animated}}" backdrop="{{backdrop}}">
   <view slot="header" class='modal-header'>
-    <text wx:if="{{title}}">{{title}}</text>
+    <text wx:if="{{title}}">{{title}}</text>
   </view>
 
   <view slot="body" class='modal-body'>

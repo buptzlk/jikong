@@ -35,7 +35,7 @@ Page({
   getUserInfo: function() {
     let that = this
     wx.request({
-      url: 'http://www.btcuee.com/api/page/my',
+      url: 'https://www.btcuee.com/api/page/my',
       data: {
         open_id: app.globalData.openid,
       },

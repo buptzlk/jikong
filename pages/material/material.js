@@ -6,7 +6,6 @@ const app = getApp()
 Page({
   naviMaterialInfo: function(e) {
     let dataId = e.currentTarget.dataset.id;
-    console.log('info')
     wx.navigateTo({
       url: '/pages/material/info?id=' + dataId,
     })

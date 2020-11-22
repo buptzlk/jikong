@@ -69,9 +69,9 @@ Page({
       url: `/pages/study/newList?cat_id=${e.currentTarget.dataset.id}&name=${e.currentTarget.dataset.name}`,
     })
   },
-  naviMessage: function() {
+  naviExamination: function() {
     wx.navigateTo({
-      url: '/pages/message/list',
+      url: '/pages/examination/list',
     })
   },
   onLoad: function () {

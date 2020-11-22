@@ -41,12 +41,12 @@
       <text>物资申请</text>
     </view>
     <view class="flex-row-space"></view>
-    <view class="flex-row-item" bindtap='naviMessage'>
+    <view class="flex-row-item" bindtap='naviExamination'>
       <view style="position: relative;">
-        <image src="/image/message.png"></image>
+        <image src="/image/examination.png"></image>
         <view wx:if="{{noticeCount}}" class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{noticeCount}}</view>
       </view>
-      <text>消息</text>
+      <text>试卷</text>
     </view>
   </view>
   <view class="resource-list flex-row">

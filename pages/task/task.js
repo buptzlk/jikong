@@ -102,6 +102,11 @@ Page({
       })
     }
   },
+  naviMixin() {
+    wx.navigateTo({
+      url: '/pages/task/mixin',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

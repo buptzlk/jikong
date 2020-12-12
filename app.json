@@ -24,7 +24,9 @@
     "pages/study/newList",
     "pages/examination/list",
     "pages/examination/detail",
-    "pages/examination/result"
+    "pages/examination/result",
+    "pages/task/mixin",
+    "pages/study/mixinList"
   ],
   "window": {
     "backgroundTextStyle": "dark",

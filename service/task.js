@@ -10,6 +10,12 @@ const getTaskList = function () {
   })
 }
 
+const getMultiTask = function () {
+  return Http.post(domain + 'multiTask', {
+    open_id: app.globalData.openid
+  })
+}
+
 const sign = function({
   task_id,
   user_answer
@@ -35,5 +41,6 @@ const get = function({
 module.exports = {
   getTaskList,
   sign,
-  get
+  get,
+  getMultiTask
 }

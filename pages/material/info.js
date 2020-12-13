@@ -109,7 +109,6 @@ Page({
     Material.getInfo({
       id: +this.data.dataId,
     }).then((data) => {
-      console.log(data)
       this.setData({
         materialInfo: data
       })
@@ -164,9 +163,7 @@ Page({
       open_id: app.globalData.openid,
       dataId: options.id
     });
-    if (this.data.open_id) {
-      this.getInfo();
-    }
+    this.getInfo();
   },
   /**
    * 生命周期函数--监听页面显示

@@ -1,8 +1,5 @@
 <view class="container">
-  <button class='phone-btn' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!open_id}}">
-		授权登录
-	</button>
-  <view class="weui-panel weui-panel_access" wx:else>
+  <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text">
         <view class="weui-media-box__image">
@@ -21,7 +18,10 @@
       <view>库房：{{materialInfo.position}}</view>
     </view>
   </view>
-  <view class="fixed-bottom-bar" bindtap='toggleBorrowedList'>
+  <button class='phone-btn' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!open_id}}">
+		授权登录借用
+	</button>
+  <view class="fixed-bottom-bar" bindtap='toggleBorrowedList' wx:else>
     <view class="{{selectedList.length ? 'img-box img-box-blue': 'img-box'}}">
       <image src="{{selectedList.length ?'/image/icon/cart-white.png' : '/image/icon/cart.png' }}"></image>
     </view>

@@ -51,7 +51,9 @@
   </view>
   <view class="resource-list flex-row">
     <view data-id="{{item.id}}" data-name="{{item.name}}" class="flex-row-item" wx:for="{{catInfo}}" wx:key="id" bindtap='naviStudyWithCat'>
-      <view class="news-img" style="background-image:url({{item.cover_img_url}})"></view>
+      <view class="news-img-box">
+        <view class="news-img" style="background-image:url({{item.cover_img_url}})"></view>
+      </view>
       <view class="news-title">{{item.name}}</view>
     </view>
   </view>

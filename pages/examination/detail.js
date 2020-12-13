@@ -26,7 +26,6 @@ Page({
       examId: options.id,
       type: options.type
     })
-    console.log(this.data.questionList)
     this.getQuestion()
   },
   getQuestion: function() {

@@ -26,6 +26,7 @@ Page({
       examId: options.id,
       type: options.type
     })
+    console.log(this.data.questionList)
     this.getQuestion()
   },
   getQuestion: function() {
@@ -120,7 +121,7 @@ Page({
     })
   },
   next() {
-    if (this.data.questionIndex == this.data.questionList.length - 1) {
+    if (this.data.questionIndex == this.data.questionList.length) {
       wx.redirectTo({
         url: '/pages/examination/result'
       })

@@ -23,7 +23,7 @@ Page({
   },
   naviDetail(e) {
     let id = e.currentTarget.dataset.id
-    let url = `./detail?id=${id}`
+    let url = `./detail?id=${id}&taskId=${this.data.task_id}`
     if (this.data.task_id) {
       url += `&taskId=${this.data.task_id}`
     }

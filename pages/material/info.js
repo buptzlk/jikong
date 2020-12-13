@@ -155,14 +155,30 @@ Page({
     })
     this.getList();
   },
+  getQueryString(url, name) {
+    let reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
+    let r = url.substr(1).match(reg)
+    if (r != null) {
+    return r[2]
+    }
+    return null;
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      open_id: app.globalData.openid,
-      dataId: options.id
-    });
+    if(options.q){
+      let q = decodeURIComponent(options.q)
+      this.setData({
+        open_id: app.globalData.openid,
+        dataId: this.getQueryString(q, 'id')
+      });
+    } else {
+      this.setData({
+        open_id: app.globalData.openid,
+        dataId: options.id
+      });
+    }
     this.getInfo();
   },
   /**

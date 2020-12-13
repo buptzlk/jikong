@@ -1,0 +1,11 @@
+/* pages/task/mixin.wxss */
+.weui-cells {
+  width: 100%;
+}
+.weui-cell {
+  padding: 20px;
+}
+.weui-badge_dot {
+  margin-top: -1.5em;
+  margin-left: -0.5em;
+}

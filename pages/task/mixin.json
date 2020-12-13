@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "混合任务卡",
+  "usingComponents": {
+    "easy-modal": "/component/easyModal/easy/easyModal"
+  }
+}

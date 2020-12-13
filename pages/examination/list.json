@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "试卷列表",
+  "usingComponents": {
+    "easy-modal": "/component/easyModal/easy/easyModal"
+  }
+}

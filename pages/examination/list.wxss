@@ -1,0 +1,9 @@
+.container {
+  min-height: 100%;
+}
+.weui-cells {
+  width: 100%;
+}
+.weui-cell {
+  padding: 20px;
+}

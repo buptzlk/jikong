@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="question-box" wx:if="{{question}}">
+    <view class="flex-row">
+      <view class="weui-badge weui-badge-orange">{{question.typeName}}</view>
+      <view class="weui-badge weui-badge-blue" bindtap="showFeedbackModal">我要反馈</view>
+    </view>
+    <view class="question-desc">{{question.title}}</view>
+    <view wx:if="{{question.type == 0 || question.type == 2}}">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio choice" wx:for="{{question.options}}" wx:key="index">
+          <radio value="{{index}}" checked="{{item.checked}}" /> {{item}}
+        </label>
+      </radio-group>
+    </view>
+    <view wx:else>
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox choice" wx:for="{{question.options}}" wx:key="index">
+          <checkbox value="{{index}}" checked="{{item.checked}}" /> {{item}}
+        </label>
+      </checkbox-group>
+    </view>
+    <view class="btn-group">
+      <button type="primary" bindtap="submit">提交</button>
+    </view>
+  </view>
+  <view wx:if="{{loading === false && !question}}" class="well">暂无题目～</view>
+  <easy-modal id="feedModal" title="反馈" confirmText="反馈" cancelText="取消" bind:confirmEvent="feedback" bind:cancelEvent="cancelFeedback">
+    <textarea placeholder="请填写反馈内容" value="{{feedContent}}" style="width: 100%;" bindinput='changeFeedContent' />
+  </easy-modal>
+  <easy-modal id="resultModal" title="答题结果" confirmText="下一题" cancelText="退出答题" bind:confirmEvent="next" bind:cancelEvent="exitAnswer">
+    {{resultContent}}
+  </easy-modal>
+</view>

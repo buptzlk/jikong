@@ -1,0 +1,17 @@
+<view class="container">
+  <!-- 页面内容 -->
+    <view class="weui-panel__bd"  current="{{currentTab}}" duration="300" bindchange="switchTab">
+      <view wx:for="{{list}}" wx:key="id">
+        <view bindtap="naviDetail" data-id="{{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{item.cover_img_url}}" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.description}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{list.length == 0}}" class='well'>任务卡已完成～</view>
+</view>

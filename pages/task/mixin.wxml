@@ -1,0 +1,14 @@
+<!--pages/task/task.wxml-->
+<view class="container">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell" hover-class="weui-cell_active" data-type="week" bindtap="viewNews">
+      <view class="weui-cell__bd">阅读文章</view>
+    </view>
+    <view class="weui-cell" hover-class="weui-cell_active" data-type="month" bindtap="viewAnswer">
+      <view class="weui-cell__bd">答题</view>
+    </view>
+  </view>
+  <easy-modal id="easyModal" title="{{modal.title}}" cancelText="退出任务卡" confirmText="{{modal.confirmText}}" bind:cancelEvent="exitTask" bind:confirmEvent="confirm">
+    {{modal.content}}
+  </easy-modal>
+</view>

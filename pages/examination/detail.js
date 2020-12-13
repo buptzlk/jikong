@@ -38,6 +38,7 @@ Page({
     Examination.getExaminationDetail(params).then((res) => {
       console.log(res)
       this.setData({
+        answer: '[]',
         question: res
       })
       wx.hideLoading()

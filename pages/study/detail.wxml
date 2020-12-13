@@ -12,8 +12,8 @@
       <view class="weui-article__p">
         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       </view>
-      <view>下载地址：<text class="files">{{newsInfo.files}}</text></view>
-      <button bindtap='copyText' data-text="{{newsInfo.files}}" type="primary">复制下载</button>
+      <view wx:if="{{newsInfo.files}}">下载地址：<text class="files">{{newsInfo.files}}</text></view>
+      <button bindtap='copyText' data-text="{{newsInfo.files}}" type="primary" wx:if="{{newsInfo.files}}">复制下载</button>
     </view>
   </view>
 </view> 
